@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_utils_env_split_ok.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:28:52 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/09/30 01:03:47 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:51:28 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,11 @@ char	**ft_splitenv(char *first_dir)
 
 char	**ft_split_to_env(char *string, char ch)
 {
+	size_t	i;
+	size_t	j;
+	size_t	k;
 	char	**ans;
 	char	*temp;
-	int		i;
-	int		j;
-	int		k;
 	
 	i = 0;
 	j = 0;

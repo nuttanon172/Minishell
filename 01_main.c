@@ -187,10 +187,7 @@ int	openfile(char *fname, char mode)
 		fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC,
 				0000400 | 0000200 | 0000040 | 0000020 | 0000004 | O_NONBLOCK);
 		if (fd < 0)
-		{
-			perror(fname);
-			return (-1);
-		}
+			return (perror(fname), -1);
 	}
 	return (fd);
 }
@@ -245,18 +242,15 @@ void	free_chardstar(char **path)
 
 void	free_re_arg(t_argtable **temp)
 {
-	int			i;
-
-	i = 0;
 	free_chardstar((*temp)->redirection);
 	free_chardstar((*temp)->argv);
 }
 
 char	*get_command(char *str)
 {
-	int		i;
-	int		n;
-	char	*ans;
+	size_t		i;
+	size_t		n;
+	char		*ans;
 
 	ans = NULL;
 	n = ft_strlen(str) - 1;

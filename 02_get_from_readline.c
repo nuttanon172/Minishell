@@ -94,7 +94,7 @@ char	*ft_strcat(char *src, char *dst)
 	else if (!src || !*src)
 		return (dst);
 	count = ft_strlen(src) + ft_strlen(dst);
-	ans = malloc(sizeof(char) * (count + 1));
+	ans = (char *)malloc(sizeof(char) * (count + 1));
 	ans[count] = '\0';
 	t = ans;
 	while (*s)

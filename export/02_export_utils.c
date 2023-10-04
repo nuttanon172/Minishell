@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:46:02 by naam              #+#    #+#             */
-/*   Updated: 2023/09/26 19:46:13 by lbhuprad         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:44:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	ft_csp(char *src, char ch)
 
 char	**ft_split_c(char *string, char ch)
 {
+	size_t	i;
 	char	**ans;
 	char	*temp;
-	int		i;
 
 	i = 0;
 	temp = string;

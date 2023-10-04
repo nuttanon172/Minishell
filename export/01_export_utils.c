@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:44:01 by naam              #+#    #+#             */
-/*   Updated: 2023/09/26 14:50:57 by lbhuprad         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:43:13 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ size_t	ft_strlen(const char *s)
 		return (0);
 	ct = 0;
 	while (s[ct] != '\0')
-	{
 		ct++;
-	}
 	return (ct);
 }
 
@@ -88,8 +86,8 @@ int	ft_counttochar(char *src, char ch)
 
 char	*ft_strdup(char *src)
 {
+	size_t	i;
 	char	*ans;
-	int		i;
 
 	i = 0;
 	ans = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));

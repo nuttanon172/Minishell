@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/09/30 04:01:26 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/04 19:00:51 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,15 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 		close(pipeid[1]);
 		execve((*temp)->cmd, (*temp)->argv, first_dir);
 		exit(127);
+		return (WEXITSTATUS(status));
 	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		dup2_and_close(pipeid[1], pipeid[0], STDIN_FILENO);
-		i = sub_exec_redirect(temp, pipeid[0], first_dir);
-		close(pipeid[0]);
-		if (WEXITSTATUS(status))
-			return (WEXITSTATUS(status));
-		return (i);
-	}
-	return (WEXITSTATUS(status));
+	waitpid(pid, &status, 0);
+	dup2_and_close(pipeid[1], pipeid[0], STDIN_FILENO);
+	i = sub_exec_redirect(temp, pipeid[0], first_dir);
+	close(pipeid[0]);
+	if (WEXITSTATUS(status))
+		return (WEXITSTATUS(status));
+	return (i);
 }
 
 void	defualt_input(t_argtable **temp)
@@ -164,12 +161,9 @@ void	print_file_des(int fds, char *s, char c)
 	int	pid;
 	int	status;
 
-	
 	fd = dup(fds);
 	if (c == 'o')
-	{
 		writefile = open(s, O_CREAT | O_WRONLY | O_TRUNC, 777);
-	}
 	else if (c == 'a')
 		writefile = open(s, O_WRONLY | O_APPEND | O_CREAT, 777);
 	else if (c == 0)
@@ -180,12 +174,9 @@ void	print_file_des(int fds, char *s, char c)
 		write_to_file_pfd(fd, writefile);
 		close(fd);
 	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		close(writefile);
-		close(fd);
-	}
+	waitpid(pid, &status, 0);
+	close(writefile);
+	close(fd);
 }
 
 void	write_to_file_pfd(int fd, int writefile)

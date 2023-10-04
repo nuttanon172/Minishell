@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:27:14 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/10/04 16:21:02 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:46:26 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	sig_handler(int sig_number)
 
 void	sig_handler1(int sig_number)
 {
-
 	printf("in siguser\n");
 	exit(0);
-	return;
+	return ;
 }

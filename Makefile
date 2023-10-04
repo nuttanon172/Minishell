@@ -1,23 +1,14 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/09/22 12:37:11 by naam              #+#    #+#              #
-#    Updated: 2023/09/26 21:06:52 by lbhuprad         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = minishell
 
 #SRC_DIR = ./source
 #OBJ_DIR = obj
 
 CC = cc
+
 CFLAGS = -Wall -Wextra -Werror
+
 RM = rm -rf
+
 AR = ar rc
 
 SRC  = 01_main.c \
@@ -26,13 +17,11 @@ SRC  = 01_main.c \
 		04_utils.c \
 		05_utils_string.c \
 		06_utils_table_ok.c \
-		07_utils_env_split.c \
-		08_utils.c \
-		09_utils.c \
-		10_utils.c \
+		07_utils_env_split.c
 
 OBJ = $(SRC:%.c=%.o)
 
+.PHONY: all clean fclean re
 all: $(NAME)
 
 $(NAME) : $(OBJ)
@@ -54,8 +43,6 @@ fclean: clean
 	@echo "no clue now :|"
 
 re:	fclean all
-
-.PHONY: all clean fclean re
 
 #$(NAME): $(OBJ) liball
 #	$(CC) $(CFLAGS) $(OBJ) $(MLX) $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) -o $(NAME)

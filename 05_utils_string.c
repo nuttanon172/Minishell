@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05_utils_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:28:16 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/09/30 01:17:20 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:46:50 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	*ft_strndup(char *src, int n)
 	char	*ans;
 
 	ans = NULL;
-	if (!*src || n == 0 )
+	if (!*src || n == 0)
 		return (NULL);
 	if (ft_strlen(src) < (size_t)n)
 		n = ft_strlen(src);
@@ -39,7 +39,7 @@ char	*ft_strdup(char *src)
 	i = 0;
 	ans = NULL;
 	if (!src || !*src)
-		return(NULL);
+		return (NULL);
 	ans = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
 	while (src[i])
 	{

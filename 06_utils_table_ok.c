@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_utils_table_ok.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:28:39 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/09/30 00:48:11 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/04 18:47:54 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,3 @@ int	create_table_pipe_or(t_argtable **arg_table, int *j, int *k, char **cmd)
 	initialize_data_table(temp, cmds);
 	return(1);
 }
-
