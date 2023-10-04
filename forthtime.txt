@@ -1,0 +1,183 @@
+get_from_readline.c: Error!
+Error: TOO_MANY_LINES       (line:  56, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_LINES       (line: 103, col:   1):	Function has more than 25 lines
+main.c: Error!
+Error: MIXED_SPACE_TAB      (line:  36, col:   5):	Mixed spaces and tabs
+Error: SPACE_REPLACE_TAB    (line:  36, col:   5):	Found space when expecting tab
+Error: MIXED_SPACE_TAB      (line:  38, col:   5):	Mixed spaces and tabs
+Error: SPACE_REPLACE_TAB    (line:  38, col:   5):	Found space when expecting tab
+Error: MIXED_SPACE_TAB      (line:  42, col:   5):	Mixed spaces and tabs
+Error: SPACE_REPLACE_TAB    (line:  42, col:   5):	Found space when expecting tab
+Error: SPACE_REPLACE_TAB    (line:  68, col:  16):	Found space when expecting tab
+Error: TOO_MANY_VARS_FUNC   (line:  69, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_VARS_FUNC   (line:  70, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_VARS_FUNC   (line:  71, col:   1):	Too many variables declarations in a function
+Error: LINE_TOO_LONG        (line:  77, col:   1):	line too long
+Error: WRONG_SCOPE_COMMENT  (line:  77, col:   5):	Comment is invalid in this scope
+Error: LINE_TOO_LONG        (line:  77, col: 124):	line too long
+Error: LINE_TOO_LONG        (line:  78, col:   1):	line too long
+Error: WRONG_SCOPE_COMMENT  (line:  78, col:   5):	Comment is invalid in this scope
+Error: LINE_TOO_LONG        (line:  78, col: 163):	line too long
+Error: TOO_MANY_LINES       (line: 111, col:   1):	Function has more than 25 lines
+Error: SPC_AFTER_OPERATOR   (line: 128, col:  25):	missing space after operator
+Error: LINE_TOO_LONG        (line: 128, col:  82):	line too long
+Error: TOO_MANY_FUNCS       (line: 205, col:   1):	Too many functions in file
+Error: TOO_FEW_TAB          (line: 221, col:   1):	Missing tabs for indent level
+Error: SPC_BEFORE_NL        (line: 221, col:  54):	Space before newline
+Error: TOO_FEW_TAB          (line: 222, col:   1):	Missing tabs for indent level
+Error: TOO_MANY_LINES       (line: 234, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 236, col:   1):	Too many functions in file
+Error: TOO_MANY_FUNCS       (line: 247, col:   1):	Too many functions in file
+Error: TOO_MANY_LINES       (line: 281, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 283, col:   1):	Too many functions in file
+Error: TOO_MANY_VARS_FUNC   (line: 290, col:   1):	Too many variables declarations in a function
+Error: SPACE_EMPTY_LINE     (line: 291, col:   1):	Space on empty line
+Error: TOO_FEW_TAB          (line: 302, col:  13):	Missing tabs for indent level
+Error: TOO_MANY_LINES       (line: 350, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 352, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 364, col:  13):	Missing space after keyword
+Error: SPACE_AFTER_KW       (line: 372, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 372, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 375, col:   1):	Too many functions in file
+Error: TOO_MANY_FUNCS       (line: 387, col:   1):	Too many functions in file
+Error: TOO_MANY_FUNCS       (line: 406, col:   1):	Too many functions in file
+Error: TOO_MANY_VARS_FUNC   (line: 413, col:   1):	Too many variables declarations in a function
+Error: TOO_FEW_TAB          (line: 439, col:   1):	Missing tabs for indent level
+Error: COMMA_START_LINE     (line: 439, col:  71):	Comma at line start
+Error: LINE_TOO_LONG        (line: 444, col:  82):	line too long
+Error: COMMA_START_LINE     (line: 444, col:  96):	Comma at line start
+Error: LINE_TOO_LONG        (line: 445, col:  82):	line too long
+Error: TOO_MANY_LINES       (line: 458, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 460, col:   1):	Too many functions in file
+Error: TOO_MANY_LINES       (line: 494, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 496, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 506, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 506, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 516, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 525, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 525, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 529, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 529, col:   7):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 530, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 530, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_LINES       (line: 545, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 547, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 564, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 564, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 568, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 568, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 571, col:   1):	Too many functions in file
+Error: SPACE_REPLACE_TAB    (line: 573, col:   9):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line: 574, col:   9):	Misaligned variable declaration
+Error: MISALIGNED_VAR_DECL  (line: 575, col:  13):	Misaligned variable declaration
+Error: MISALIGNED_VAR_DECL  (line: 576, col:  13):	Misaligned variable declaration
+Error: SPACE_AFTER_KW       (line: 583, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 583, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 584, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 584, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 594, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 594, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 596, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 596, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 599, col:   1):	Too many functions in file
+Error: SPACE_REPLACE_TAB    (line: 601, col:   9):	Found space when expecting tab
+Error: MISALIGNED_VAR_DECL  (line: 602, col:  13):	Misaligned variable declaration
+Error: SPACE_AFTER_KW       (line: 606, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 606, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 610, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 610, col:  15):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 612, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 612, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 621, col:   1):	Too many functions in file
+Error: SPACE_EMPTY_LINE     (line: 625, col:   1):	Space on empty line
+Error: SPACE_AFTER_KW       (line: 628, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 628, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 637, col:   1):	Too many functions in file
+Error: SPACE_BEFORE_FUNC    (line: 637, col:   5):	space before function name
+Error: SPACE_AFTER_KW       (line: 651, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 651, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 653, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 653, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 655, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 655, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 657, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 657, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: LINE_TOO_LONG        (line: 659, col:  82):	line too long
+Error: SPACE_AFTER_KW       (line: 666, col:  17):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 666, col:  19):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 667, col:  21):	Missing space after keyword
+Error: SPACE_AFTER_KW       (line: 676, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 676, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_LINES       (line: 677, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 679, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 690, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 690, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 692, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 692, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 694, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 694, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: LINE_TOO_LONG        (line: 698, col:  83):	line too long
+Error: TOO_MANY_FUNCS       (line: 707, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 714, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 714, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 716, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 716, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: LINE_TOO_LONG        (line: 717, col:  87):	line too long
+Error: TOO_MANY_FUNCS       (line: 724, col:   1):	Too many functions in file
+Error: TOO_MANY_TABS_FUNC   (line: 724, col:   5):	extra tabs before function name
+Error: SPACE_AFTER_KW       (line: 729, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 729, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 732, col:  13):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 732, col:  19):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 735, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 735, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_FUNCS       (line: 738, col:   1):	Too many functions in file
+Error: SPACE_EMPTY_LINE     (line: 745, col:   1):	Space on empty line
+Error: TOO_MANY_FUNCS       (line: 757, col:   1):	Too many functions in file
+Error: SPACE_AFTER_KW       (line: 771, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 771, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 773, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 773, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: SPC_BEFORE_NL        (line: 774, col:  10):	Space before newline
+Error: SPACE_AFTER_KW       (line: 778, col:  14):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 778, col:  16):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 787, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 787, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_LINES       (line: 788, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 790, col:   1):	Too many functions in file
+Error: SPACE_EMPTY_LINE     (line: 796, col:   1):	Space on empty line
+Error: SPACE_AFTER_KW       (line: 801, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 801, col:  10):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 803, col:   9):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 803, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: SPC_BEFORE_NL        (line: 804, col:  10):	Space before newline
+Error: SPACE_AFTER_KW       (line: 808, col:  14):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 808, col:  16):	Missing space before parenthesis (brace/bracket)
+Error: SPACE_AFTER_KW       (line: 817, col:   5):	Missing space after keyword
+Error: SPC_BFR_PAR          (line: 817, col:  11):	Missing space before parenthesis (brace/bracket)
+Error: TOO_MANY_LINES       (line: 818, col:   1):	Function has more than 25 lines
+Error: CONSECUTIVE_NEWLINES (line: 820, col:   1):	Consecutive newlines
+Error: EMPTY_LINE_EOF       (line: 820, col:   1):	Empty line at end of file
+minishell.h: OK!
+pipex.c: Error!
+Error: TOO_MANY_VARS_FUNC   (line:  59, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_VARS_FUNC   (line:  60, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_LINES       (line: 120, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_VARS_FUNC   (line: 129, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_VARS_FUNC   (line: 130, col:   1):	Too many variables declarations in a function
+Error: TOO_MANY_LINES       (line: 161, col:   1):	Function has more than 25 lines
+Error: TOO_MANY_FUNCS       (line: 206, col:   1):	Too many functions in file
+echo/echo.c: OK!
+env/env.c: OK!
+exit/exit.c: OK!
+export/01_export_utils.c: OK!
+export/02_export_utils.c: Error!
+Error: TOO_MANY_LINES       (line:  74, col:   1):	Function has more than 25 lines
+export/export.c: OK!
+export/export.h: OK!
+pwd/pwd.c: OK!
+unset/01_unset_utils.c: OK!
+unset/02_unset_utils.c: Error!
+Error: TOO_MANY_LINES       (line:  74, col:   1):	Function has more than 25 lines
+unset/unset.c: OK!
+unset/unset.h: OK!
