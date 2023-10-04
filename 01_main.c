@@ -14,7 +14,6 @@
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*value;
 	int		pi;
 	char	first_dir[4096];
 
@@ -23,7 +22,6 @@ int	main(int argc, char **argv, char **envp)
 	pi = 0;
 	getcwd(first_dir, sizeof(first_dir));
 	signal(SIGQUIT, SIG_IGN);
-	// if (SIG)
 	signal(SIGINT, sig_handler);
 	write_env(envp, first_dir);
 	pi = start_shell(pi, first_dir);
@@ -42,12 +40,12 @@ int	start_shell(int pi, char *first_dir)
 	{
 		check = NULL;
 		arg_table = NULL;
-		command = get_from_readline();
+		temp_env = ft_splitenv(first_dir);
+		command = get_from_readline(temp_env);
 		if (*command)
 			add_history(command);
 		command = ft_add_ifsp_nosp(command);
 		check = ft_split_c(command, ' ');
-		temp_env = ft_splitenv(first_dir);
 		replace_variable(check, temp_env, pi);
 		if (!check_heredoc(check) && check[0])
 		{
@@ -63,7 +61,8 @@ int	start_shell(int pi, char *first_dir)
 		}
 		free(command);
 		free_chardstar(check);
-		free_chardstar(temp_env);	
+		free_chardstar(temp_env);
+		wait(NULL);	
 		if (!access(".here_doc", F_OK))
 			unlink(".here_doc");
 		if (!access(".input_file", F_OK))
@@ -202,11 +201,10 @@ char	*get_path(char *argv, char **first_dir)
 	char	*temp;
 	int		i;
 	char	*stjoin;
-	char	**env;
 
 	i = 0;
-	 if (!ft_strcmp(argv, "cd"))
-	 	return (argv);
+	if (!ft_strcmp(argv, "cd"))
+		return (argv);
 	temp = ft_getenv(first_dir, ft_strndup("PATH", 4));
 	path = ft_split_c(temp, ':');
 	free(temp);
@@ -394,8 +392,6 @@ void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 {
 	int	k;
 
-	// printf("the result: %d\n", (*i)[1]);
-	// printf("the result: %s\n", cmd[*i[0]]);
 	(*i)[1]++;
 	k = 0;
 	while (cmd[(*i)[0]][(*i)[1]] && cmd[(*i)[0]][(*i)[1]] != '\'' && cmd[(*i)[0]][(*i)[1]] != '\"'
@@ -571,7 +567,6 @@ void	clear_q(char **cmd)
 	bool	is_insq;
 	int		i;
 	int		j;
-	char	*temp;
 
 	is_indq = false;
 	is_insq = false;

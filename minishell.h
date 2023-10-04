@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/03 16:56:22 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/04 16:54:11 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,15 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <stdbool.h>
-# include <readline/history.h>
-# include <readline/readline.h>
+# include <signal.h>
+// # include <rlstdc.h>
+// # include <history.h>
+// # include <readline.h>
 # include <sys/wait.h>
 
 # define HISTORY_FILE "/.isworld_history"
 # define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
+// # define SIGUSR1 4
 
 typedef struct s_env
 {
@@ -70,7 +73,7 @@ typedef struct s_table
 	int			k;
 }	t_table;
 
-char		*get_from_readline(void);
+char		*get_from_readline(char **env);
 size_t		ft_strlen(const char *s);
 char		**ft_split_c(char *string, char ch);
 int			ft_csp(char *src, char ch);
@@ -128,5 +131,10 @@ int			count_to_newline(char *src);
 char 		**ft_split_to_env(char *string, char ch);
 void		set_zero_dchar(char **ans, int k);
 void		*ft_strndup_env(char **dst, char *src, int n);
+char		*readline (const char *prompt);
+void 		add_history (char *string);
+int 		rl_on_new_line (void);
+void 		rl_redisplay (void);
+void 		rl_replace_line (const char *text, int clear_undo);
 
 #endif

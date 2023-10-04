@@ -38,7 +38,6 @@ int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
 int	pipex(t_argtable **arg_table, char	**first_dir)
 {
 	t_argtable	**temp;
-	int			fd;
 	pid_t		pid;
 	int			status;
 
@@ -66,8 +65,8 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 	status = 0;
 	i = 0;
 	temp = arg_table;
-	pipe(pipeid);
 	defualt_input(temp);
+	pipe(pipeid);
 	pid = fork();
 	if (!pid)
 	{
@@ -245,7 +244,7 @@ char	*open_inputdoc(char *filename)
 	char		*string;
 	int			fd;
 
-	fd = open(filename, O_RDONLY);
+	fd = open(filename, O_RDONLY, 777);
 	if (fd < 0)
 		perror(filename);
 	stat(filename, &st);
@@ -260,7 +259,7 @@ void	write_input_dummy(char *string)
 {
 	int	fd;
 
-	fd = open(".input_file", O_CREAT | O_RDWR);
+	fd = open(".input_file", O_CREAT | O_RDWR, 777);
 	write(fd, string, ft_strlen(string));
 	close(fd);
 }

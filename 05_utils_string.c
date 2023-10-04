@@ -19,7 +19,7 @@ char	*ft_strndup(char *src, int n)
 	ans = NULL;
 	if (!*src || n == 0 )
 		return (NULL);
-	if (ft_strlen(src) < n)
+	if (ft_strlen(src) < (size_t)n)
 		n = ft_strlen(src);
 	ans = malloc(sizeof(char) * (n + 1));
 	ans[n--] = '\0';
