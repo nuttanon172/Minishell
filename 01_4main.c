@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:26:29 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:27:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:47:28 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ char	*replace_q(char *cmd)
 	j = 0;
 	is_indq = false;
 	is_insq = false;
-	ans = NULL;
-	ans = malloc(sizeof(char) * (ft_strlen(cmd) - count_qoute(cmd) + 1));
+	ans = (char *)malloc(sizeof(char)
+			* (ft_strlen(cmd) - count_qoute(cmd) + 1));
 	while (cmd[i])
 	{
 		if (!is_insq && cmd[i] == '\"')

@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:46:26 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:39:40 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*ft_add_ifsp_nosp(char *cmd)
 	is_indq = false;
 	is_insq = false;
 	i = count_special_character(cmd) * 2;
-	ans = malloc(sizeof(char) * (ft_strlen(cmd) + i + 1));
+	ans = (char *)malloc(sizeof(char) * (ft_strlen(cmd) + i + 1));
 	i = 0;
 	j = 0;
 	while (cmd[i] == ' ')

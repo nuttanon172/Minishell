@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:34:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:40:20 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ char	*open_inputdoc(char *filename)
 	if (fd < 0)
 		perror(filename);
 	stat(filename, &st);
-	string = malloc(sizeof(char) * (st.st_size) + 1);
+	string = (char *)malloc(sizeof(char) * (st.st_size) + 1);
 	string[st.st_size] = '\0';
 	read(fd, string, st.st_size);
 	close(fd);

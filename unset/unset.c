@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 19:35:32 by naam              #+#    #+#             */
-/*   Updated: 2023/09/26 13:39:00 by lbhuprad         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:54:26 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void	ft_unset(char **envp, char *argv)
 	close(i[1]);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	if (argc == 1)
 		return (0);
-	ft_unset(ft_splitenv(), argv[1]);
+	ft_unset(env, argv[1]);
 	return (0);
 }

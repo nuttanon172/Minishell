@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:53:49 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:39:16 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ void	replace_variable(char **cmd, char **env, int pi)
 
 	is_indq = false;
 	is_insq = false;
-	i = malloc(sizeof(int) * 2);
+	i = (int *)malloc(sizeof(int) * 2);
+	return ;
 	i[0] = 0;
 	i[1] = 0;
 	while (cmd[i[0]])

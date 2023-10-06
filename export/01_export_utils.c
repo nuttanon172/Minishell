@@ -5,17 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 18:44:01 by naam              #+#    #+#             */
-/*   Updated: 2023/10/04 18:43:13 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/06 19:58:05 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/06 19:58:07 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <stdbool.h>
 #include "export.h"
 
 size_t	ft_strlen(const char *s)
@@ -38,22 +32,6 @@ size_t	ft_arglen(char *argv)
 	while (argv[i] && argv[i] != '=')
 		i++;
 	return (i);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while ((i < n) && ((s1[i] != '\0') || (s2[i] != '\0')))
-	{
-		if (s1[i] > s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		if (s1[i] < s2[i])
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
-		i++;
-	}
-	return (0);
 }
 
 int	ft_counttochar(char *src, char ch)

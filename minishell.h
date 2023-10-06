@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/06 19:12:37 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:43:41 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void		rl_redisplay(void);
 void		rl_replace_line(const char *text, int clear_undo);
 int			execve_command(t_argtable **arg_table, char **first_dir);
 int			read_default_fd(t_argtable **arg_table);
-char		**ft_splitenv(char *first_dir);
 void		print_file_des(int fds, char *s, char c);
 char		*open_inputdoc(char *filename);
 void		write_to_file_pfd(int fd, int writefile);

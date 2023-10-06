@@ -3,20 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/20 19:35:23 by naam              #+#    #+#             */
-/*   Updated: 2023/09/26 15:01:43 by lbhuprad         ###   ########.fr       */
+/*   Created: 2023/10/06 19:44:51 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/06 19:51:35 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <stdbool.h>
 #include "export.h"
+
+static int	ft_cmpstrn(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while ((i < n) && ((s1[i] != '\0') || (s2[i] != '\0')))
+	{
+		if (s1[i] > s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] < s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
+}
 
 int	ft_replace(char **envp, char *argv)
 {
@@ -27,7 +37,7 @@ int	ft_replace(char **envp, char *argv)
 		return (0);
 	while (envp[i[0]])
 	{
-		if (*argv != 0 && (ft_strncmp(argv, envp[i[0]], ft_arglen(argv)) == 0))
+		if (*argv != 0 && (ft_cmpstrn(argv, envp[i[0]], ft_arglen(argv)) == 0))
 		{
 			free(envp[i[0]]);
 			envp[i[0]] = NULL;
@@ -63,10 +73,10 @@ void	ft_export(char **envp, char *argv)
 	close(i[1]);
 }
 
-int	main(int argc, char **argv)
+int	main(int argc, char **argv, char **env)
 {
 	if (argc == 1)
 		return (0);
-	ft_export(ft_splitenv(), argv[1]);
+	ft_export(env, argv[1]);
 	return (0);
 }

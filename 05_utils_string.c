@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:28:16 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/10/06 13:38:45 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:40:29 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strndup(char *src, int n)
 		return (NULL);
 	if (ft_strlen(src) < (size_t)n)
 		n = ft_strlen(src);
-	ans = malloc(sizeof(char) * (n + 1));
+	ans = (char *)malloc(sizeof(char) * (n + 1));
 	ans[n--] = '\0';
 	while (n >= 0)
 	{

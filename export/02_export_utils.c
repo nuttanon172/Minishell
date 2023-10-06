@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 18:46:02 by naam              #+#    #+#             */
-/*   Updated: 2023/10/04 18:44:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:48:14 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**ft_split_c(char *string, char ch)
 		return (NULL);
 	while (*temp == ' ')
 		temp++;
-	ans = malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
+	ans = (char **)malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
 	while (i <= ft_csp(string, ch))
 	{
 		if (ft_counttochar(temp, ch) != -1)
@@ -69,24 +69,4 @@ char	**ft_split_c(char *string, char ch)
 	}
 	ans[i] = NULL;
 	return (ans);
-}
-
-char	**ft_splitenv(void)
-{
-	struct stat	st;
-	char		*string;
-	int			fd;
-	char		**envp;
-
-	fd = open(".minishell.env", O_RDONLY);
-	stat(".minishell.env", &st);
-	if (!st.st_size)
-		return (NULL);
-	string = malloc(sizeof(char) * (st.st_size) + 1);
-	string[st.st_size] = '\0';
-	read(fd, string, st.st_size);
-	envp = ft_split_c(string, '\n');
-	close(fd);
-	free(string);
-	return (envp);
 }
