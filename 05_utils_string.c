@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 18:28:16 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/10/04 18:46:50 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 13:38:45 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_strndup(char *src, int n)
 char	*ft_strdup(char *src)
 {
 	char	*ans;
-	int		i;
+	size_t	i;
 
 	i = 0;
 	ans = NULL;
@@ -65,9 +65,9 @@ int	ft_strcmp(char *src, char *dst)
 	return (*t_src - *t_dst);
 }
 
-int	ft_strncmp(char *src, char *cmp, int n)
+int	ft_strncmp(char *src, char *cmp, size_t	n)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < n)

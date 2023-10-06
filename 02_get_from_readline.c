@@ -12,19 +12,36 @@
 
 #include "minishell.h"
 
+void	get_from_readline_util(char	*line, int *signal)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] == '\"' && *signal == 0)
+			*signal = 1;
+		line = check_quote(signal, line, &i, '\"');
+		if (line[i] == '\'' && *signal == 0)
+			*signal = 1;
+		line = check_quote(signal, line, &i, '\'');
+		i++;
+	}
+}
+
 char	*get_from_readline(char **env)
 {
 	char	*line;
 	int		signal;
 	char	str[4096];
 	char	*dir;
-	int		i;
 
-	i = 0;
 	signal = 0;
 	dir = NULL;
 	getcwd(str, sizeof(str));
-	dir = ft_strcat(ft_strcat(ft_strdup("\033[0;34mCurrent directory: "), ft_strdup(str)), ft_strdup("\nWelcome to my world my rule $ "));
+	dir = ft_strcat(ft_strcat(
+				ft_strdup("\033[0;34mCurrent directory: "), ft_strdup(str)),
+			ft_strdup("\nWelcome to my world my rule $ "));
 	line = readline(dir);
 	if (!line)
 	{
@@ -32,16 +49,7 @@ char	*get_from_readline(char **env)
 		exit(0);
 	}
 	free(dir);
-	while (line[i])
-	{
-		if (line[i] == '\"' && signal == 0)
-			signal = 1;
-		line = check_quote(&signal, line, &i, '\"');
-		if (line[i] == '\'' && signal == 0)
-			signal = 1;
-		line = check_quote(&signal, line, &i, '\'');
-		i++;
-	}
+	get_from_readline_util(line, &signal);
 	check_pipe_and_return_line(&line);
 	return (line);
 }
@@ -65,18 +73,6 @@ void	check_pipe_and_return_line(char **line)
 	}
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	ct;
-
-	if (!s || !*s)
-		return (0);
-	ct = 0;
-	while (s[ct] != '\0')
-		ct++;
-	return (ct);
-}
-
 char	*ft_strcat(char *src, char *dst)
 {
 	char	*ans;
@@ -94,7 +90,7 @@ char	*ft_strcat(char *src, char *dst)
 	else if (!src || !*src)
 		return (dst);
 	count = ft_strlen(src) + ft_strlen(dst);
-	ans = (char *)malloc(sizeof(char) * (count + 1));
+	ans = malloc(sizeof(char) * (count + 1));
 	ans[count] = '\0';
 	t = ans;
 	while (*s)
@@ -103,7 +99,6 @@ char	*ft_strcat(char *src, char *dst)
 		*t++ = *d++;
 	free(src);
 	free(dst);
-	// printf("ans:%s\n", ans);
 	return (ans);
 }
 

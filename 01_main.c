@@ -187,7 +187,10 @@ int	openfile(char *fname, char mode)
 		fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC,
 				0000400 | 0000200 | 0000040 | 0000020 | 0000004 | O_NONBLOCK);
 		if (fd < 0)
-			return (perror(fname), -1);
+		{
+			perror(fname);
+			return (-1);
+		}
 	}
 	return (fd);
 }
@@ -242,15 +245,18 @@ void	free_chardstar(char **path)
 
 void	free_re_arg(t_argtable **temp)
 {
+	int			i;
+
+	i = 0;
 	free_chardstar((*temp)->redirection);
 	free_chardstar((*temp)->argv);
 }
 
 char	*get_command(char *str)
 {
-	size_t		i;
-	size_t		n;
-	char		*ans;
+	int		i;
+	int		n;
+	char	*ans;
 
 	ans = NULL;
 	n = ft_strlen(str) - 1;
@@ -312,22 +318,22 @@ void	initialize_data_table(t_argtable **temp, char **cmd)
 
 int	count_command_arg(char **cmd)
 {
-	char	**temp;
-	int		i;
+	size_t		i;
+	int			j;
 
 	if (!cmd || !*cmd)
 		return(0);
-	temp = cmd;
 	i = 0;
-	while (*temp && ft_strcmp(*temp, "|") && ft_strcmp(*temp, "||"))
+	j = 0;
+	while (cmd[j] && ft_strcmp(cmd[j], "|") && ft_strcmp(cmd[j], "||"))
 	{
-		if (!ft_strcmp(*temp, "<") || !ft_strcmp(*temp, "<<") 
-			|| !ft_strcmp(*temp, ">") || !ft_strcmp(*temp, ">>"))
-			*temp++;
+		if (!ft_strcmp(cmd[j], "<") || !ft_strcmp(cmd[j], "<<") 
+			|| !ft_strcmp(cmd[j], ">") || !ft_strcmp(cmd[j], ">>"))
+			j++;
 		else
 			i++;
-		if (*temp)
-			*temp++;
+		if (cmd[j])
+			j++;
 	}
 	return (i);
 }
@@ -335,18 +341,20 @@ int	count_command_arg(char **cmd)
 int	count_redirection(char **cmd)
 {
 	char	**temp;
+	size_t	j;
 	int		i;
 
 	if (!cmd || !*cmd)
 		return(0);
 	temp = cmd;
+	j = 0;
 	i = 0;
-	while (*temp && ft_strcmp(*temp, "|") && ft_strcmp(*temp, "||"))
+	while (cmd[j] && ft_strcmp(cmd[j], "|") && ft_strcmp(cmd[j], "||"))
 	{
-		if (!ft_strcmp(*temp, "<") || !ft_strcmp(*temp, "<<") 
-			|| !ft_strcmp(*temp, ">") || !ft_strcmp(*temp, ">>"))
+		if (!ft_strcmp(cmd[j], "<") || !ft_strcmp(cmd[j], "<<") 
+			|| !ft_strcmp(cmd[j], ">") || !ft_strcmp(cmd[j], ">>"))
 			i++;
-		*temp++;
+		j++;
 	}
 	return (i);
 }

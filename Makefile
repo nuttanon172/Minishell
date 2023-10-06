@@ -5,14 +5,14 @@ NAME = minishell
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -L /usr/local/opt/readline/lib/ -I /usr/opt/readline/include
 
 RM = rm -rf
 
 AR = ar rc
 
 SRC  = 01_main.c \
-		02_get_from_readline.c 
+		02_get_from_readline.c \
 		03_pipex.c \
 		04_utils.c \
 		05_utils_string.c \
