@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 17:53:58 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/06 19:34:03 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	print_file_des(int fds, char *s, char c)
 
 	fd = dup(fds);
 	if (c == 'o')
-		writefile = open(s, O_CREAT | O_WRONLY | O_TRUNC, 777);
+		writefile = open(s, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (c == 'a')
-		writefile = open(s, O_WRONLY | O_APPEND | O_CREAT, 777);
+		writefile = open(s, O_WRONLY | O_APPEND | O_CREAT, 0644);
 	else if (c == 0)
 		writefile = STDOUT_FILENO;
 	pid = fork();
@@ -93,7 +93,7 @@ char	*open_inputdoc(char *filename)
 	char		*string;
 	int			fd;
 
-	fd = open(filename, O_RDONLY, 777);
+	fd = open(filename, O_RDONLY, 0777);
 	if (fd < 0)
 		perror(filename);
 	stat(filename, &st);
@@ -108,7 +108,7 @@ void	write_input_dummy(char *string)
 {
 	int	fd;
 
-	fd = open(".input_file", O_CREAT | O_RDWR, 777);
+	fd = open(".input_file", O_CREAT | O_RDWR, 0777);
 	write(fd, string, ft_strlen(string));
 	close(fd);
 }

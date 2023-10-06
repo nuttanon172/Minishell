@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_from_readline.c                                :+:      :+:    :+:   */
+/*   02_get_from_readline.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbhuprad <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 15:16:10 by lbhuprad          #+#    #+#             */
-/*   Updated: 2023/09/26 15:16:10 by lbhuprad         ###   ########.fr       */
+/*   Created: 2023/10/06 18:14:14 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/06 18:14:14 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ char	*get_from_readline(char **env)
 	free(dir);
 	get_from_readline_util(line, &signal);
 	check_pipe_and_return_line(&line);
+	if (*line)
+		add_history(line);
 	return (line);
 }
 

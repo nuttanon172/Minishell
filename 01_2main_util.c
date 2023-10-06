@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   01_2main_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:14:52 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:14:55 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/06 18:53:51 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/06 18:54:12 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <stdio.h>
+#include "minishell.h"
 
-int	main(void)
+void	check_inq(char ch, bool *is_indq, bool *is_insq)
 {
-	struct stat	st;
-	char		*string;
-	int			fd;
-
-	fd = open(".minishell.env", O_RDONLY);
-	stat(".minishell.env", &st);
-	string = malloc(sizeof(char) * (st.st_size) + 1);
-	string[st.st_size] = '\0';
-	read(fd, string, st.st_size);
-	printf("%s", string);
-	close(fd);
-	free(string);
-	return (0);
+	if (ch == '\"')
+		*is_indq = !(*is_indq);
+	if (!is_indq && ch == '\'')
+		*is_insq = !(*is_insq);
 }
