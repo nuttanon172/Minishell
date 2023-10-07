@@ -12,7 +12,7 @@
 
 #include "minishell.h"
 
-int	pipex(t_argtable **arg_table, char	**first_dir)
+int	pipex(t_argtable **arg_table, char **first_dir)
 {
 	t_argtable	**temp;
 	pid_t		pid;
