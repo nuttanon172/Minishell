@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/06 19:43:41 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:04:53 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_table
 	int					k;
 }	t_table;
 
-char		*get_from_readline(char **env);
+char		*get_from_readline(void);
 size_t		ft_strlen(const char *s);
 char		**ft_split_c(char *string, char ch);
 int			ft_csp(char *src, char ch);
@@ -143,6 +143,5 @@ int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
 void		get_path_util(char *argv);
 void		check_inq(char ch, bool *is_indq, bool *is_insq);
 void		free_s(char *command, char **check, char **temp_env);
-void		start_shell_util(char **temp_env, char *command, char **check);
 
 #endif

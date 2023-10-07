@@ -1,79 +1,66 @@
 NAME = minishell
 
-#SRC_DIR = ./source
-#OBJ_DIR = obj
-
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -L /usr/local/opt/readline/lib/ -I /usr/opt/readline/include
+LIB_RL	=	-L/usr/local/opt/readline/lib/
+INC_RL	=	-I/usr/opt/readline/include
+
+CFLAGS	=	-Wall -Wextra -Werror $(LIB_RL) $(INC_RL)
+
+#LDFLAGS = -L/opt/homebrew/opt/readline/lib
+#CPPFLAGS = -I/opt/homebrew/opt/readline/include/readline
+#CFLAGS = -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS)
 
 RM = rm -rf
 
 AR = ar rc
 
-SRC  = 01_main.c \
+SRC  = 01_0main.c \
+		01_0main_util.c \
+		01_1main.c \
+		01_1main_util.c \
+		01_2main.c \
+		01_2main_util.c \
+		01_3main.c \
+		01_4main.c \
 		02_get_from_readline.c \
-		03_pipex.c \
+		03_0pipex.c \
+		03_1pipex.c \
 		04_utils.c \
 		05_utils_string.c \
-		06_utils_table_ok.c \
-		07_utils_env_split.c
+		06_0utils_table_ok.c \
+		06_1utils_table_ok.c \
+		07_0utils_env_split_ok.c \
+		07_1utils_env_split_ok.c
 
 OBJ = $(SRC:%.c=%.o)
 
-.PHONY: all clean fclean re
-all: $(NAME)
-
-$(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+$(NAME):
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
 	@echo "Nanoshell starts"
 
-$(OBJ):
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+.PHONY: all clean fclean re
+all: $(NAME)
+	@make -C echo
+	@make -C unset
+	@make -C export
+	@make -C exit
+	@make -C env
+	@mkae -C echo
 
-#clean .o keep .c .a
 clean:
-	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ)
+	@make clean -C echo
+	@make clean -C unset
+	@make clean -C export
+	@make clean -C exit
+	@make clean -C env
+	@mkae clean -C echo
 	@echo "cleaned!"
 
-#clean .o & .a keep .c
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(OBJ_DIR)
+	$(RM) $(OBJ)
 	@echo "no clue now :|"
 
 re:	fclean all
-
-#$(NAME): $(OBJ) liball
-#	$(CC) $(CFLAGS) $(OBJ) $(MLX) $(LIBFT) $(FT_PRINTF) $(MLX_FLAGS) -o $(NAME)
-#	@echo "Nanoshell starts"
-
-#$(OBJ): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-#	mkdir -p $(OBJ_DIR)
-#	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-#liball:
-#	make -C $(LIBFT_DIR)
-#	make -C $(MLX_DIR)
-#	make -C $(FT_PRINTF_DIR) 
-
-#clean .o keep .c .a
-#clean:
-#	$(RM) $(OBJ_DIR)
-#	make clean -C $(MLX_DIR)
-#	make clean -C $(LIBFT_DIR)
-#	make clean -C $(FT_PRINTF_DIR)
-#	@echo "yep, cleaned"
-
-#clean .o & .a keep .c
-#fclean: clean
-#	$(RM) $(NAME)
-#	$(RM) $(OBJ_DIR)
-#	make clean -C $(MLX_DIR)
-#	make fclean -C $(LIBFT_DIR)
-#	make fclean -C $(FT_PRINTF_DIR)
-#	@echo "start over"
-
-#re:	fclean all
-
-#.PHONY: all clean fclean re

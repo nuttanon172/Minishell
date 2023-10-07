@@ -1,28 +1,29 @@
-NAME = unsettt
+NAME	=	unset
 
-CC = cc
+CC	=	cc
 
-CFLAGS = -Wall -Wextra -Werror
+INC_RL_RL	=	-I/usr/local/opt/readline/include
 
-RM = rm -rf
+CFLAGS	=	-Wall -Wextra -Werror
 
-AR = ar rc
+RM	=	rm -rf
 
-SRC  = export.c \
-		01_export_utils.c \
-		02_export_utils.c \
-		
-OBJ = $(SRC:%.c=%.o)
+AR	=	ar rc
+
+SRC	=	unset.c
+			01_unset_utils.c \
+			02_unset_utils.c
+
+OBJ	=	$(SRC:.c=.o)
 
 .PHONY: all clean fclean re
 all: $(NAME)
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-%o: %c $(INCLUDE)
-	@cc $(FLAGS) -I/usr/local/opt/readline/include -c $< -o $@
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@mv $(NAME) ../bin
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) ../bin/$(NAME)
 fclean: clean
 	$(RM) $(NAME)
 re:	fclean all

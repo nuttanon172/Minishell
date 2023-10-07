@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:37:26 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:00:37 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,6 @@ char	*get_path(char *argv, char **first_dir)
 
 void	free_re_arg(t_argtable **temp)
 {
-	int			i;
-
-	i = 0;
 	free_chardstar((*temp)->redirection);
 	free_chardstar((*temp)->argv);
 }

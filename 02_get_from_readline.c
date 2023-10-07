@@ -29,7 +29,7 @@ void	get_from_readline_util(char	*line, int *signal)
 	}
 }
 
-char	*get_from_readline(char **env)
+char	*get_from_readline(void)
 {
 	char	*line;
 	int		signal;

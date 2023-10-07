@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:23:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:09:01 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	start_shell(int pi, char *first_dir)
 	while (1)
 	{
 		temp_env = ft_splitenv(first_dir);
-		cmd = ft_split_c(ft_add_ifsp_nosp(get_from_readline(temp_env)), ' ');
+		cmd = ft_split_c(ft_add_ifsp_nosp(get_from_readline()), ' ');
 		replace_variable(cmd, temp_env, pi);
 		if (!check_heredoc(cmd) && cmd[0])
 		{

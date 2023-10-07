@@ -1,24 +1,27 @@
-NAME = echooo
+NAME	=	echo
 
-CC = cc
+CC	=	cc
 
-CFLAGS = -Wall -Wextra -Werror
+INC_RL_RL	=	-I/usr/local/opt/readline/include
 
-RM = rm -rf
-AR = ar rc
+CFLAGS	=	-Wall -Wextra -Werror
+
+RM	=	rm -rf
+
+AR	=	ar rc
+
+SRC	=	echo.c
+
+OBJ	=	$(SRC:.c=.o)
 
 .PHONY: all clean fclean re
-SRC  = echo.c
-OBJ = $(SRC:%.c=%.o)
-
 all: $(NAME)
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-%o: %c $(INCLUDE)
-	@cc $(FLAGS) -I/usr/local/opt/readline/include -c $< -o $@
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@mv $(NAME)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) ../bin/$(NAME)
 fclean: clean
 	$(RM) $(NAME)
 re:	fclean all

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_4main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:26:29 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:47:28 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:04:05 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,9 @@ int	count_special_character(char *command)
 
 void	clear_q(char **cmd)
 {
-	bool	is_indq;
-	bool	is_insq;
 	int		i;
-	int		j;
 
-	is_indq = false;
-	is_insq = false;
 	i = 0;
-	j = 0;
 	while (cmd[i])
 	{
 		cmd[i] = replace_q(cmd[i]);

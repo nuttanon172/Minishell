@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:39:16 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:01:05 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,11 @@ int	count_command_arg(char **cmd)
 
 int	count_redirection(char **cmd)
 {
-	char	**temp;
 	size_t	j;
 	int		i;
 
 	if (!cmd || !*cmd)
 		return (0);
-	temp = cmd;
 	j = 0;
 	i = 0;
 	while (cmd[j] && ft_strcmp(cmd[j], "|") && ft_strcmp(cmd[j], "||"))

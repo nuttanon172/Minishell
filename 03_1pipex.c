@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_1pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:40:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:05:53 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	print_file_des(int fds, char *s, char c)
 	int	status;
 
 	fd = dup(fds);
+	writefile = 0;
 	if (c == 'o')
 		writefile = open(s, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	else if (c == 'a')

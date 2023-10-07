@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:59:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:20:16 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 11:00:04 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,4 @@ void	free_s(char *command, char **check, char **temp_env)
 		unlink(".here_doc");
 	if (!access(".input_file", F_OK))
 		unlink(".input_file");
-}
-
-void	start_shell_util(char **temp_env, char *command, char **check)
-{
-	command = get_from_readline(temp_env);
-	if (*command)
-		add_history(command);
-	command = ft_add_ifsp_nosp(command);
-	check = ft_split_c(command, ' ');
 }

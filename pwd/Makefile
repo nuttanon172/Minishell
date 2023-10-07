@@ -1,29 +1,27 @@
-NAME = pwddd
+NAME	=	pwd
 
-CC = cc
+CC	=	cc
 
-CFLAGS = -Wall -Wextra -Werror
+INC_RL_RL	=	-I/usr/local/opt/readline/include
 
-RM = rm -rf
+CFLAGS	=	-Wall -Wextra -Werror
 
-AR = ar rc
+RM	=	rm -rf
 
-SRC  = pwd.c
+AR	=	ar rc
 
-OBJ = $(SRC:%.c=%.o)
+SRC	=	pwd.c
+
+OBJ	=	$(SRC:.c=.o)
 
 .PHONY: all clean fclean re
 all: $(NAME)
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-
-%o: %c $(INCLUDE)
-	@cc $(FLAGS) -I/usr/local/opt/readline/include -c $< -o $@
+	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	@mv $(NAME) ../bin
 
 clean:
-	$(RM) $(OBJ)
-
+	$(RM) ../bin/$(NAME)
 fclean: clean
 	$(RM) $(NAME)
-
 re:	fclean all
