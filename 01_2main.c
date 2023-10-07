@@ -103,7 +103,6 @@ void	replace_variable(char **cmd, char **env, int pi)
 	is_indq = false;
 	is_insq = false;
 	i = (int *)malloc(sizeof(int) * 2);
-	return ;
 	i[0] = 0;
 	i[1] = 0;
 	while (cmd[i[0]])
