@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:29:41 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 17:29:44 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:44:25 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,7 @@ int	main(void)
 
 	pwd = getcwd(NULL, 0);
 	if (!pwd)
-	{
-		perror("pwd_error :");
-		return (errno);
-	}
+		return (perror("pwd_error :"), errno);
 	printf("%s\n", pwd);
 	return (free(pwd), 0);
 }

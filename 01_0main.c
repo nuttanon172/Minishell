@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 16:28:30 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 20:30:25 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,10 @@ int	main(int argc, char **argv, char **envp)
 
 int	start_shell(int pi, char *first_dir)
 {
-	char		**cmd;
 	t_argtable	*arg_table;
-	char		**temp_env;
 	t_argtable	*temp_table;
+	char		**cmd;
+	char		**temp_env;
 
 	while (1)
 	{
@@ -86,10 +86,10 @@ int	check_spcharactor(char *str)
 		|| str[0] == ';' || str[0] == '&' || str[0] == '#' || str[0] == '-'
 		|| str[0] == '(' || str[0] == ')')
 	{
-		write (2, "Syntax error near unexpected token: '", 37);
+		write(2, "Syntax error near unexpected token: '", 37);
 		if (str)
 			write (2, str, ft_strlen(str));
-		write (2, "'\n", 2);
+		write(2, "'\n", 2);
 		return (1);
 	}
 	return (0);
@@ -110,7 +110,7 @@ int	check_heredoc(char **cmd)
 				|| !ft_strcmp(cmd[i + 1], "<")
 				|| !ft_strcmp(cmd[i + 1], ">") || !ft_strcmp(cmd[i + 1], ">>"))
 			{
-				write (2, "Syntax error near unexpected token: ''\n", 39);
+				write(2, "Syntax error near unexpected token: ''\n", 39);
 				status = 1;
 			}
 		}
