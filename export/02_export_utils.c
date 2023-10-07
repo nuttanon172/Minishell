@@ -3,19 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   02_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 18:46:02 by naam              #+#    #+#             */
-/*   Updated: 2023/10/06 19:48:14 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/07 17:10:12 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/07 17:11:27 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <stdbool.h>
 #include "export.h"
 
 int	ft_csp(char *src, char ch)
@@ -55,7 +49,7 @@ char	**ft_split_c(char *string, char ch)
 	while (*temp == ' ')
 		temp++;
 	ans = (char **)malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
-	while (i <= ft_csp(string, ch))
+	while (i <= (size_t)ft_csp(string, ch))
 	{
 		if (ft_counttochar(temp, ch) != -1)
 		{
@@ -68,5 +62,24 @@ char	**ft_split_c(char *string, char ch)
 			ans[i++] = ft_strndup(temp, ft_strlen(temp));
 	}
 	ans[i] = NULL;
+	return (ans);
+}
+
+char	*ft_strndup(char *src, int n)
+{
+	char	*ans;
+
+	ans = NULL;
+	if (!*src || n == 0)
+		return (NULL);
+	if (ft_strlen(src) < (size_t)n)
+		n = ft_strlen(src);
+	ans = (char *)malloc(sizeof(char) * (n + 1));
+	ans[n--] = '\0';
+	while (n >= 0)
+	{
+		ans[n] = src[n];
+		n--;
+	}
 	return (ans);
 }

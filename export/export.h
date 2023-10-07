@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/24 22:27:37 by naam              #+#    #+#             */
-/*   Updated: 2023/10/06 19:56:50 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/07 17:10:33 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/07 17:10:35 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ size_t	ft_strlen(const char *s);
 int		ft_counttochar(char *src, char ch);
 char	*ft_strdup(char *src);
 int		ft_csp(char *src, char ch);
+size_t	ft_arglen(char *argv);
 char	**ft_split_c(char *string, char ch);
+char	*ft_strndup(char *src, int n);
 
 #endif

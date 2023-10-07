@@ -18,10 +18,10 @@ OBJ	=	$(SRC:.c=.o)
 all: $(NAME)
 $(NAME) : $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-	@mv $(NAME)
+	@mv $(NAME) ../bin/
 
 clean:
-	$(RM) ../bin/$(NAME)
+	@$(RM) $(OBJ)
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) ../bin/$(NAME)
 re:	fclean all

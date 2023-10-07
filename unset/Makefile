@@ -10,7 +10,7 @@ RM	=	rm -rf
 
 AR	=	ar rc
 
-SRC	=	unset.c
+SRC	=	unset.c \
 			01_unset_utils.c \
 			02_unset_utils.c
 
@@ -18,12 +18,11 @@ OBJ	=	$(SRC:.c=.o)
 
 .PHONY: all clean fclean re
 all: $(NAME)
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@mv $(NAME) ../bin
-
 clean:
-	$(RM) ../bin/$(NAME)
+	@$(RM) $(OBJ)
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) ../bin/$(NAME)
 re:	fclean all

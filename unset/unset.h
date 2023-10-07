@@ -3,19 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   unset.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:44:10 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:55:40 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:01:40 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UNSET_H
 # define UNSET_H
 
-# include <stdlib.h>
-# include <unistd.h>
 # include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/stat.h>
+# include <stdbool.h>
 
 size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);

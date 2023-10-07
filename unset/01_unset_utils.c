@@ -3,19 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   01_unset_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:41:59 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:55:29 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 17:02:22 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <stdbool.h>
 #include "unset.h"
 
 size_t	ft_strlen(const char *s)
@@ -28,16 +22,6 @@ size_t	ft_strlen(const char *s)
 	while (s[ct] != '\0')
 		ct++;
 	return (ct);
-}
-
-size_t	ft_arglen(char *argv)
-{
-	size_t	i;
-
-	i = 0;
-	while (argv[i] && argv[i] != '=')
-		i++;
-	return (i);
 }
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

@@ -16,12 +16,12 @@ OBJ	=	$(SRC:.c=.o)
 
 .PHONY: all clean fclean re
 all: $(NAME)
-$(NAME) : $(OBJ)
+$(NAME): $(OBJ)
 	@$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 	@mv $(NAME) ../bin
 
 clean:
-	$(RM) ../bin/$(NAME)
+	@$(RM) $(OBJ)
 fclean: clean
-	$(RM) $(NAME)
+	@$(RM) ../bin/$(NAME)
 re:	fclean all

@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   02_unset_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 18:46:02 by naam              #+#    #+#             */
-/*   Updated: 2023/10/06 19:41:10 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/07 17:02:09 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/07 17:05:41 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <stdbool.h>
-#include "export.h"
+#include "unset.h"
 
 int	ft_csp(char *src, char ch)
 {
@@ -59,13 +53,13 @@ char	**ft_split_c(char *string, char ch)
 	{
 		if (ft_counttochar(temp, ch) != -1)
 		{
-			ans[i++] = ft_strndup(temp, ft_counttochar(temp, ch));
+			ans[i++] = ft_strdup(temp);
 			temp = temp + ft_counttochar(temp, ch) + 1;
 			while (*temp == ch)
 				temp++;
 		}
 		else
-			ans[i++] = ft_strndup(temp, ft_strlen(temp));
+			ans[i++] = ft_strdup(temp);
 	}
 	ans[i] = NULL;
 	return (ans);
