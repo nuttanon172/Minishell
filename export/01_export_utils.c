@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   01_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:58:05 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:58:07 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:32:09 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "export.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	ct;
+
+	if (!s)
+		return (0);
+	ct = 0;
+	while (s[ct] != '\0')
+		ct++;
+	return (ct);
+}
 
 size_t	ft_strlen(const char *s)
 {
