@@ -11,8 +11,7 @@ RM	=	rm -rf
 AR	=	ar rc
 
 SRC	=	export.c \
-			01_export_utils.c \
-			02_export_utils.c
+			01_export_utils.c
 
 OBJ	=	$(SRC:.c=.o)
 
