@@ -38,6 +38,7 @@ SRCS  = 01_0main.c \
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
+	@mkdir bin
 	@make -C echo
 	@make -C env
 	@make -C exit
@@ -50,7 +51,7 @@ $(NAME): $(OBJS)
 .PHONY: all clean fclean re
 all: $(NAME)
 
-clean: 
+clean:
 	@$(RM) $(OBJS)
 	@make clean -C echo
 	@make clean -C env
@@ -67,6 +68,7 @@ fclean: clean
 	@make fclean -C export
 	@make fclean -C pwd
 	@make fclean -C unset
+	@$(RM) bin
 	@$(RM) $(NAME)
 	@echo "no clue now :|"
 
