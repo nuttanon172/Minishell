@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:10:12 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 17:11:27 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:40:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,35 +34,6 @@ int	ft_csp(char *src, char ch)
 		temp++;
 	}
 	return (i);
-}
-
-char	**ft_split_c(char *string, char ch)
-{
-	size_t	i;
-	char	**ans;
-	char	*temp;
-
-	i = 0;
-	temp = string;
-	if (temp == NULL)
-		return (NULL);
-	while (*temp == ' ')
-		temp++;
-	ans = (char **)malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
-	while (i <= (size_t)ft_csp(string, ch))
-	{
-		if (ft_counttochar(temp, ch) != -1)
-		{
-			ans[i++] = ft_strndup(temp, ft_counttochar(temp, ch));
-			temp = temp + ft_counttochar(temp, ch) + 1;
-			while (*temp == ch)
-				temp++;
-		}
-		else
-			ans[i++] = ft_strndup(temp, ft_strlen(temp));
-	}
-	ans[i] = NULL;
-	return (ans);
 }
 
 char	*ft_strndup(char *src, int n)

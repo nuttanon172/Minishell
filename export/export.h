@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 17:10:33 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 17:10:35 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 21:40:55 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int		ft_counttochar(char *src, char ch);
 char	*ft_strdup(char *src);
 int		ft_csp(char *src, char ch);
 size_t	ft_arglen(char *argv);
-char	**ft_split_c(char *string, char ch);
 char	*ft_strndup(char *src, int n);
 
 #endif

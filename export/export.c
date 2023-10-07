@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:44:51 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:51:35 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/07 22:17:35 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,36 +28,58 @@ static int	ft_cmpstrn(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int	ft_replace(char **envp, char *argv)
+void	update_env(char **temp)
 {
-	int	i[2];
+	int		fd;
+	size_t	i;
+	size_t	j;
 
-	i[0] = 0;
-	if (!argv)
-		return (0);
-	while (envp[i[0]])
+	i = 0;
+	fd = open(".minishell.env", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	while (temp[i])
 	{
-		if (*argv != 0 && (ft_cmpstrn(argv, envp[i[0]], ft_arglen(argv)) == 0))
-		{
-			free(envp[i[0]]);
-			envp[i[0]] = NULL;
-			envp[i[0]] = ft_strdup(argv);
-			break ;
-		}
-		(i[0])++;
+		j = 0;
+		while (temp[i][j])
+			write(fd, &temp[i][j++], 1);
+		free(temp[i]);
+		temp[i] = NULL;
+		i++;
 	}
-	return (i[0]);
+	free(temp);
 }
 
-void	ft_export(char **envp, char *argv)
+int	ft_replace(char *argv, char **temp)
+{
+	int	i;
+
+	i = 0;
+	if (!argv)
+		return (0);
+	while (temp[i])
+	{
+		if (*argv != 0 && (ft_cmpstrn(argv, temp[i], ft_arglen(argv)) == 0))
+		{
+			free(temp[i]);
+			temp[i] = NULL;
+			temp[i] = ft_strdup(argv);
+			update_env(temp);
+			break ;
+		}
+		i++;
+	}
+	return (i);
+}
+
+void	ft_export(char *argv, char **temp, char **envp)
 {
 	int		i[2];
 
-	i[0] = ft_replace(envp, argv);
+	i[0] = ft_replace(argv, temp);
 	if (!envp[i[0]] && ((i[0]) > 0))
 	{
 		i[1] = open(".minishell.env", O_WRONLY | O_APPEND, 0644);
 		write(i[1], argv, ft_strlen(argv));
+		write(i[1], "\n", 1);
 		close(i[1]);
 		return ;
 	}
@@ -75,8 +97,19 @@ void	ft_export(char **envp, char *argv)
 
 int	main(int argc, char **argv, char **env)
 {
+	size_t	i;
+	char	**temp;
+
+	i = 0;
+	temp = NULL;
+	while (env[i])
+	{	
+		temp[i] = ft_strdup(env[i]);
+		i++;
+	}
+	temp[i] = 0;
 	if (argc == 1)
 		return (0);
-	ft_export(env, argv[1]);
+	ft_export(argv[1], temp, env);
 	return (0);
 }
