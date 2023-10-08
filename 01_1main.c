@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 11:00:37 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:44:29 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char	*get_path(char *argv, char **first_dir)
 		return (argv);
 	temp = ft_getenv(first_dir, ft_strndup("PATH", 4));
 	path = ft_split_c(temp, ':');
-	free(temp);
 	while (path[i++])
 	{
 		stjoin = ft_strcat(ft_strcat(ft_strndup(path[i - 1],

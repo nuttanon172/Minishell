@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 17:04:16 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 15:10:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,7 @@ char	**ft_splitenv(char *first_dir)
 		ans = ft_strcat(ans, ft_strndup(str, fd[1]));
 	}
 	envp = ft_split_to_env(ans, '\n');
-	free(ans);
-	ans = NULL;
-	free(file_dirs);
-	file_dirs = NULL;
-	close(fd[0]);
-	return (envp);
+	return (free(ans), free(file_dirs), close(fd[0]), envp);
 }
 
 char	**ft_split_to_env(char *string, char ch)

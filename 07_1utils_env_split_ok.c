@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:56 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 16:52:37 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:45:42 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_split_c(char *string, char ch)
 			ans[i++] = ft_strndup(temp, ft_strlen(temp));
 	}
 	ans[i] = NULL;
-	return (ans);
+	return (free(string), ans);
 }
 
 int	ft_csp(char *src, char ch)
