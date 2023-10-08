@@ -4,7 +4,7 @@ CC = cc
 
 LIB_RL	=	-lreadline
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g
 
 RM = rm -rf
 

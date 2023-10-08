@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_1pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 11:05:53 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 16:55:17 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,14 @@ void	write_to_file_pfd(int fd, int writefile)
 {
 	size_t	i;
 	char	*ans;
-	char	str[10];
+	char	str[11];
 
 	i = 0;
 	ans = NULL;
 	while (1)
 	{
 		i = read(fd, str, 10);
+		str[10] = 0;
 		ans = ft_strcat(ans, ft_strndup(str, i));
 		if (i < 10 || (i == 10 && !str[i - 1]))
 			break ;
@@ -98,9 +99,11 @@ char	*open_inputdoc(char *filename)
 	if (fd < 0)
 		perror(filename);
 	stat(filename, &st);
-	string = (char *)malloc(sizeof(char) * (st.st_size) + 1);
-	string[st.st_size] = '\0';
+	string = (char *)malloc(sizeof(char) * (st.st_size + 1));
+	if (!string)
+		return (NULL);
 	read(fd, string, st.st_size);
+	string[st.st_size] = '\0';
 	close(fd);
 	return (string);
 }
@@ -111,5 +114,6 @@ void	write_input_dummy(char *string)
 
 	fd = open(".input_file", O_CREAT | O_RDWR, 0777);
 	write(fd, string, ft_strlen(string));
+	free(string);
 	close(fd);
 }

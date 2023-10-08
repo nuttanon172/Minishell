@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 15:10:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 16:48:02 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_splitenv(char *first_dir)
 	char		**envp;
 	char		*ans;
 	char		*file_dirs;
-	char		str[10];
+	char		str[11];
 
 	ans = NULL;
 	envp = NULL;
@@ -60,6 +60,7 @@ char	**ft_splitenv(char *first_dir)
 	while (1)
 	{
 		fd[1] = read(fd[0], str, 10);
+		str[10] = 0;
 		if (fd[1] <= 0)
 			break ;
 		ans = ft_strcat(ans, ft_strndup(str, fd[1]));
