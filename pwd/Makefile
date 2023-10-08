@@ -2,8 +2,6 @@ NAME	=	pwd
 
 CC	=	cc
 
-INC_RL_RL	=	-I/usr/local/opt/readline/include
-
 CFLAGS	=	-Wall -Wextra -Werror
 
 RM	=	rm -rf

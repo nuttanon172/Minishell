@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:58:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 17:36:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/08 14:34:42 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	i = 1;
-	printf("This is my echo\n");
 	if (!ft_strncmp(argv[i], "-n", 2))
 		i++;
 	while (argv[i])

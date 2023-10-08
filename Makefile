@@ -3,14 +3,8 @@ NAME = minishell
 CC = cc
 
 LIB_RL	=	-lreadline
-#LIB_RL	=	-L/usr/local/opt/readline/lib/
-INC_RL	=	-I/usr/opt/readline/include
 
-#CFLAGS	=	-Wall -Wextra -Werror $(LIB_RL) $(INC_RL)
 CFLAGS	=	-Wall -Wextra -Werror
-#LDFLAGS = -L/opt/homebrew/opt/readline/lib
-#CPPFLAGS = -I/opt/homebrew/opt/readline/include/readline
-#CFLAGS = -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS)
 
 RM = rm -rf
 
@@ -38,6 +32,7 @@ SRCS  = 01_0main.c \
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
+	@$(RM) bin
 	@mkdir bin
 	@make -C echo
 	@make -C env
@@ -45,7 +40,7 @@ $(NAME): $(OBJS)
 	@make -C export
 	@make -C pwd
 	@make -C unset
-	$(CC) $(CFLAGS) $(OBJS) $(LIB_RL) -o $(NAME)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB_RL) -o $(NAME)
 	@echo "Nanoshell starts"
 
 .PHONY: all clean fclean re
@@ -70,6 +65,7 @@ fclean: clean
 	@make fclean -C unset
 	@$(RM) bin
 	@$(RM) $(NAME)
+	@$(RM) .minishell.env
 	@echo "no clue now :|"
 
 re:	fclean all

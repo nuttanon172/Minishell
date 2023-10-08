@@ -2,17 +2,13 @@ NAME	=	unset
 
 CC	=	cc
 
-INC_RL_RL	=	-I/usr/local/opt/readline/include
-
 CFLAGS	=	-Wall -Wextra -Werror
 
 RM	=	rm -rf
 
 AR	=	ar rc
 
-SRC	=	unset.c \
-			01_unset_utils.c \
-			02_unset_utils.c
+SRC	=	unset.c
 
 OBJ	=	$(SRC:.c=.o)
 
