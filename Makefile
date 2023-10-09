@@ -2,9 +2,9 @@ NAME = minishell
 
 CC = cc
 
-#LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
+LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
 
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
 
 RM = rm -rf
 
@@ -27,6 +27,7 @@ SRCS  = 01_0main.c \
 		06_1utils_table_ok.c \
 		07_0utils_env_split_ok.c \
 		07_1utils_env_split_ok.c \
+		07_2utils_env_split_ok.c \
 		minishell_utils.c
 
 OBJS = $(SRCS:.c=.o)

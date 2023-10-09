@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/07 11:04:53 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:00:27 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ int			count_redirection(char **cmd);
 int			check_char_sptable(t_argtable *arg_table);
 int			check_spcharactor(char *str);
 void		chang_directory(char *path);
-void		ft_charsetzero(char **chars, int n);
 int			count_newline(char *src);
 int			count_to_newline(char *src);
 char		**ft_split_to_env(char *string, char ch);

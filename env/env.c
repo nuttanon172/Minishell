@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:14:52 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 17:41:55 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:33:25 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	main(void)
 	fd = open(".minishell.env", O_RDONLY);
 	stat(".minishell.env", &st);
 	string = (char *)malloc(sizeof(char) * (st.st_size + 1));
+	if (!string)
+		return (close(fd), EXIT_FAILURE);
 	string[st.st_size] = '\0';
 	read(fd, string, st.st_size);
 	printf("%s", string);
-	close(fd);
-	free(string);
-	return (0);
+	return (close(fd), free(string), 0);
 }

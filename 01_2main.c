@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 11:01:05 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:12:13 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ void	replace_variable(char **cmd, char **env, int pi)
 	is_indq = false;
 	is_insq = false;
 	i = (int *)malloc(sizeof(int) * 2);
+	if (!i)
+		return ;
 	i[0] = 0;
 	i[1] = 0;
 	while (cmd[i[0]])

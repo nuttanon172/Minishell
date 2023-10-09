@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:58:05 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 23:17:02 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:51:41 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ char	*ft_strdup(char *src)
 
 	i = 0;
 	ans = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
+	if (!ans)
+		return (NULL);
 	while (src[i])
 	{
 		ans[i] = src[i];

@@ -6,26 +6,18 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:56 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 14:45:42 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:22:01 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**ft_split_c(char *string, char ch)
+void	ft_split_utils(char **ans, char *string, char *temp, char ch)
 {
-	char	**ans;
-	char	*temp;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	temp = string;
-	if (temp == NULL)
-		return (NULL);
-	while (*temp == ' ')
-		temp++;
-	ans = (char **)malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
-	while (i <= ft_csp(string, ch))
+	while (i <= (size_t)ft_csp(string, ch))
 	{
 		if (ft_counttochar(temp, ch) != -1)
 		{
@@ -38,6 +30,22 @@ char	**ft_split_c(char *string, char ch)
 			ans[i++] = ft_strndup(temp, ft_strlen(temp));
 	}
 	ans[i] = NULL;
+}
+
+char	**ft_split_c(char *string, char ch)
+{
+	char	**ans;
+	char	*temp;
+
+	temp = string;
+	if (temp == NULL)
+		return (NULL);
+	while (*temp == ' ')
+		temp++;
+	ans = (char **)malloc(sizeof(char *) * (ft_csp(temp, ch) + 2));
+	if (!ans)
+		return (NULL);
+	ft_split_utils(ans, string, temp, ch);
 	return (free(string), ans);
 }
 
@@ -88,20 +96,4 @@ char	*ft_getenv(char **env, char	*var)
 	}
 	free(var);
 	return (ans);
-}
-
-int	count_newline(char *src)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (src[i])
-	{
-		if (src[i] == '\n')
-			j++;
-		i++;
-	}
-	return (j);
 }

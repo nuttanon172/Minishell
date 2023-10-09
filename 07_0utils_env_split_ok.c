@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 16:48:02 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:27:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,11 @@ char	**ft_splitenv(char *first_dir)
 	return (free(ans), free(file_dirs), close(fd[0]), envp);
 }
 
-char	**ft_split_to_env(char *string, char ch)
+void	ft_splitenv_utils(char **ans, char *temp, char ch)
 {
 	size_t	j;
-	size_t	k;
-	char	**ans;
-	char	*temp;
 
 	j = 0;
-	temp = string;
-	k = count_newline(temp);
-	ans = (char **)malloc(sizeof(char *) * (k + 1));
 	while (*temp)
 	{
 		ans[j++] = ft_strndup(temp, count_to_newline(temp));
@@ -93,28 +87,20 @@ char	**ft_split_to_env(char *string, char ch)
 			temp++;
 		}
 	}
-	temp = NULL;
-	ans[k] = NULL;
-	return (ans);
 }
 
-int	count_to_newline(char *src)
+char	**ft_split_to_env(char *string, char ch)
 {
+	size_t	k;
+	char	**ans;
 	char	*temp;
-	int		i;
 
-	i = 0;
-	temp = src;
-	while (*temp)
-	{
-		if (*temp == '\n' || !*temp)
-		{
-			if (!*temp)
-				i--;
-			break ;
-		}
-		i++;
-		temp++;
-	}
-	return (i);
+	temp = string;
+	k = count_newline(temp);
+	ans = (char **)malloc(sizeof(char *) * (k + 1));
+	if (!ans)
+		return (NULL);
+	ft_splitenv_utils(ans, temp, ch);
+	ans[k] = NULL;
+	return (ans);
 }

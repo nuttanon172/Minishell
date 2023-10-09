@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_4main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:26:29 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/07 11:04:05 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:57:39 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,9 @@ char	*replace_q(char *cmd)
 	j = 0;
 	is_indq = false;
 	is_insq = false;
-	ans = (char *)malloc(sizeof(char)
-			* (ft_strlen(cmd) - count_qoute(cmd) + 1));
+	ans = (char *)malloc(ft_strlen(cmd) - count_qoute(cmd) + 1);
+	if (!ans)
+		return (NULL);
 	while (cmd[i])
 	{
 		if (!is_insq && cmd[i] == '\"')
@@ -86,8 +87,7 @@ char	*replace_q(char *cmd)
 		i++;
 	}
 	ans[j] = '\0';
-	free(cmd);
-	return (ans);
+	return (free(cmd), ans);
 }
 
 int	count_qoute(char *cmd)

@@ -78,13 +78,10 @@ void	check_pipe_and_return_line(char **line)
 char	*ft_strcat(char *src, char *dst)
 {
 	char	*ans;
-	char	*t;
-	char	*s;
-	char	*d;
 	size_t	count;
+	size_t	i;
+	size_t	j;
 
-	s = src;
-	d = dst;
 	if (!dst && !src)
 		return (NULL);
 	if (!dst || !*dst)
@@ -93,15 +90,17 @@ char	*ft_strcat(char *src, char *dst)
 		return (dst);
 	count = ft_strlen(src) + ft_strlen(dst);
 	ans = (char *)malloc(sizeof(char) * (count + 1));
-	ans[count] = '\0';
-	t = ans;
-	while (*s)
-		*t++ = *s++;
-	while (*d)
-		*t++ = *d++;
-	free(src);
-	free(dst);
-	return (ans);
+	if (!ans)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (src[j])
+		ans[i++] = src[j++];
+	j = 0;
+	while (dst[j])
+		ans[i++] = dst[j++];
+	ans[i] = '\0';
+	return (free(src), free(dst), ans);
 }
 
 char	*check_quote(int *signal, char *line, int *i, char what_quote)

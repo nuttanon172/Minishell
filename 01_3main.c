@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 19:39:40 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/09 16:07:02 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,14 @@ int	ft_counttochar(char *src, char ch)
 		return (i);
 }
 
+int	check_lex(char cmd)
+{
+	if (cmd == '|' || cmd == '<' || cmd == '>' || cmd == '&')
+		return (1);
+	else
+		return (0);
+}
+
 char	*ft_add_ifsp_nosp(char *cmd)
 {
 	int		i;
@@ -76,8 +84,9 @@ char	*ft_add_ifsp_nosp(char *cmd)
 
 	is_indq = false;
 	is_insq = false;
-	i = count_special_character(cmd) * 2;
-	ans = (char *)malloc(sizeof(char) * (ft_strlen(cmd) + i + 1));
+	ans = (char *)malloc(ft_strlen(cmd) + count_special_character(cmd) * 2 + 1);
+	if (!ans)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (cmd[i] == ' ')
@@ -85,23 +94,13 @@ char	*ft_add_ifsp_nosp(char *cmd)
 	while (cmd[i])
 	{
 		is_in_q(cmd[i], &is_indq, &is_insq);
-		if (!is_indq && !is_insq && (cmd[i] == '|' || cmd[i] == '<'
-				|| cmd[i] == '>' || cmd[i] == '&') && cmd[i + 1])
+		if (!is_indq && !is_insq && check_lex(cmd[i]) && cmd[i + 1])
 			add_space(&j, &i, &ans, &cmd);
 		else
 			ans[j++] = cmd[i++];
 	}
 	ans[j] = '\0';
 	return (free(cmd), ans);
-}
-
-void	ft_charsetzero(char **chars, int n)
-{
-	while (n >= 0)
-	{
-		(*chars)[n] = '\0';
-		n--;
-	}
 }
 
 void	add_space(int *j, int *i, char **ans, char **cmd)
