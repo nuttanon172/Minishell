@@ -3,42 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:12:13 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:42:57 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*return_lebel(char *c)
-{
-	if (!ft_strcmp(c, ">"))
-		return (ft_strdup("outfile"));
-	if (!ft_strcmp(c, ">>"))
-		return (ft_strdup("append"));
-	if (!ft_strcmp(c, "<"))
-		return (ft_strdup("infile"));
-	if (!ft_strcmp(c, "<<"))
-		return (ft_strdup("heredoc"));
-	return (NULL);
-}
-
-void	initialize_data_table(t_argtable **temp, char **cmd)
+void	init_util(t_argtable **temp, char **cmd)
 {
 	int	i;
 
-	if ((*temp))
-	{
-		(*temp)->next = (t_argtable *)malloc(sizeof(t_argtable));
-		(*temp) = (*temp)->next;
-	}
-	else if (!(*temp))
-	{
-		(*temp) = (t_argtable *)malloc(sizeof(t_argtable));
-		(*temp)->next = NULL;
-	}
 	i = count_command_arg(cmd);
 	(*temp)->argv = (char **)malloc(sizeof(char *) * (i + 1));
 	(*temp)->argv[i] = NULL;
@@ -51,6 +28,25 @@ void	initialize_data_table(t_argtable **temp, char **cmd)
 	(*temp)->infile = NULL;
 	(*temp)->outfile = NULL;
 	(*temp)->appendfile = NULL;
+}
+
+void	initialize_data_table(t_argtable **temp, char **cmd)
+{
+	if ((*temp))
+	{
+		(*temp)->next = (t_argtable *)malloc(sizeof(t_argtable));
+		if (!(*temp)->next)
+			return ;
+		(*temp) = (*temp)->next;
+	}
+	else if (!(*temp))
+	{
+		(*temp) = (t_argtable *)malloc(sizeof(t_argtable));
+		if (!*temp)
+			return ;
+		(*temp)->next = NULL;
+	}
+	init_util(temp, cmd);
 }
 
 int	count_command_arg(char **cmd)
@@ -110,7 +106,7 @@ void	replace_variable(char **cmd, char **env, int pi)
 	while (cmd[i[0]])
 	{
 		check_inq(cmd[i[0]][i[1]], &is_indq, &is_insq);
-		if (!is_insq && cmd[i[0]][i[1]] == '$')
+		if (is_indq && cmd[i[0]][i[1]] == '$')
 			sub_replace_veriable(cmd, &i, pi, env);
 		if (cmd[i[0]][i[1]])
 			i[1]++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main_util.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:53:51 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 18:54:12 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:40:40 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,17 @@ void	check_inq(char ch, bool *is_indq, bool *is_insq)
 		*is_indq = !(*is_indq);
 	if (!is_indq && ch == '\'')
 		*is_insq = !(*is_insq);
+}
+
+char	*return_lebel(char *c)
+{
+	if (!ft_strcmp(c, ">"))
+		return (ft_strdup("outfile"));
+	if (!ft_strcmp(c, ">>"))
+		return (ft_strdup("append"));
+	if (!ft_strcmp(c, "<"))
+		return (ft_strdup("infile"));
+	if (!ft_strcmp(c, "<<"))
+		return (ft_strdup("heredoc"));
+	return (NULL);
 }
