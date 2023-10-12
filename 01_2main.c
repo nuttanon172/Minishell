@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 10:45:49 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:42:20 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	replace_variable(char **cmd, char **env, int pi)
 	while (cmd[i[0]])
 	{
 		check_inq(cmd[i[0]][i[1]], &is_indq, &is_insq);
-		if (is_indq && cmd[i[0]][i[1]] == '$')
+		if ((is_indq && cmd[i[0]][i[1]] == '$') || cmd[i[0]][i[1]] == '$')
 			sub_replace_veriable(cmd, &i, pi, env);
 		if (cmd[i[0]][i[1]])
 			i[1]++;

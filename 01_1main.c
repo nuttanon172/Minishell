@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 14:44:29 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:38:20 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ char	*get_path(char *argv, char **first_dir)
 	path = ft_split_c(temp, ':');
 	while (path[i++])
 	{
-		stjoin = ft_strcat(ft_strcat(ft_strndup(path[i - 1],
-						ft_strlen(path[i - 1])), ft_strndup("/", 1)),
-				ft_strndup(argv, ft_strlen(argv)));
+		stjoin = ft_strcat(ft_strcat(ft_strdup(path[i - 1]), \
+				ft_strdup("/")), ft_strdup(argv));
 		if (!access(stjoin, X_OK))
 			free_chardstar(path);
 		if (!access(stjoin, X_OK))

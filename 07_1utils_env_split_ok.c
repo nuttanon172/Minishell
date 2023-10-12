@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:56 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:22:01 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 13:04:09 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,12 @@ int	ft_csp(char *src, char ch)
 
 char	*ft_getenv(char **env, char	*var)
 {
-	int		i;
+	size_t		i;
 	char	*ans;
 	char	*temp;
 
 	i = 0;
+	ans = NULL;
 	while (env[i])
 	{
 		temp = env[i];

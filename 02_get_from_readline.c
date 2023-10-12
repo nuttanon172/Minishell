@@ -12,6 +12,20 @@
 
 #include "minishell.h"
 
+char	*check_quote(int *signal, char *line, int *i, char what_quote)
+{
+	while (*signal != 0)
+	{
+		if (!line[*i])
+			line = ft_strcat(line, readline(">"));
+		else
+			(*i)++;
+		if (line[*i] == what_quote)
+			*signal = 0;
+	}
+	return (line);
+}
+
 void	get_from_readline_util(char	*line, int *signal)
 {
 	int	i;
@@ -101,18 +115,4 @@ char	*ft_strcat(char *src, char *dst)
 		ans[i++] = dst[j++];
 	ans[i] = '\0';
 	return (free(src), free(dst), ans);
-}
-
-char	*check_quote(int *signal, char *line, int *i, char what_quote)
-{
-	while (*signal != 0)
-	{
-		if (!line[*i])
-			line = ft_strcat(line, readline(">"));
-		else
-			(*i)++;
-		if (line[*i] == what_quote)
-			*signal = 0;
-	}
-	return (line);
 }

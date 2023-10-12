@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:58:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 14:34:42 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 12:46:50 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	while (argv[i])
 	{
 		printf("%s", argv[i++]);
-		if (argv[i] != NULL)
+		if (argv[i])
 			printf(" ");
 	}
 	if (ft_strncmp(argv[1], "-n", 2))
