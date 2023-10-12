@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 17:07:58 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:17:18 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,10 @@ void	replace_variable(char **cmd, char **env, int pi)
 	{
 		check_inq(cmd[i[0]][i[1]], &is_indq, &is_insq);
 		if ((!is_insq && cmd[i[0]][i[1]] == '$'))
-			sub_replace_veriable(cmd, i, pi, env);
-		i[1]++;
-		if (!cmd[i[0]][i[1]])
+			sub_replace_veriable(cmd, &i, pi, env);
+		if (cmd[i[0]][i[1]])
+			i[1]++;
+		else
 		{
 			i[0]++;
 			i[1] = 0;

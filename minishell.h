@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/12 17:08:17 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 19:10:42 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void		is_in_q(char c, bool *is_indq, bool *is_insq);
 void		sig_handler(int sig_number);
 char		*ft_strcat(char *src, char *dst);
 char		*check_quote(int *signal, char *line, int *i, char what_quote);
-void		sub_replace_veriable(char **cmd, int *i, int pi, char **env);
+void		sub_replace_veriable(char **cmd, int **i, int pi, char **env);
 void		check_pipe_and_return_line(char **line);
 void		set_int_zero(t_table *s);
 void		free_null(char *str);
@@ -135,5 +135,5 @@ int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
 void		get_path_util(char *argv);
 void		check_inq(char ch, bool *is_indq, bool *is_insq);
 void		free_s(char *command, char **check, char **temp_env);
-int			check_env(char **cmd, int **i);
+
 #endif
