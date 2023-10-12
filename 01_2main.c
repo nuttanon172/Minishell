@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 10:42:57 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 10:45:49 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	init_util(t_argtable **temp, char **cmd)
 
 	i = count_command_arg(cmd);
 	(*temp)->argv = (char **)malloc(sizeof(char *) * (i + 1));
-	(*temp)->argv[i] = NULL;
+	if ((*temp)->argv)
+		(*temp)->argv[i] = NULL;
 	i = count_redirection(cmd);
 	(*temp)->redirection = (char **)malloc(sizeof(char *) * (i + 1));
-	(*temp)->redirection[i] = NULL;
+	if ((*temp)->redirection)
+		(*temp)->redirection[i] = NULL;
 	(*temp)->next = NULL;
 	(*temp)->cmd = NULL;
 	(*temp)->heredoc_kw = NULL;
