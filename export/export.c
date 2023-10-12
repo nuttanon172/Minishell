@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:44:51 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 14:33:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:36:31 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void	ft_export(char **envp, char *argv)
 	while (envp[i])
 	{
 		write(fd, envp[i], ft_strlen(envp[i]));
-		printf("envp[i] = %s\n", envp[i]);
 		write (fd, "\n", 1);
 		i++;
 	}

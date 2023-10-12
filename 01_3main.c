@@ -6,36 +6,27 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:07:02 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/12 17:09:47 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
+void	sub_replace_veriable(char **cmd, int *i, int pi, char **env)
 {
 	int	k;
 
-	(*i)[1]++;
+	i[1]++;
 	k = 0;
-	while (cmd[(*i)[0]][(*i)[1]] && cmd[(*i)[0]][(*i)[1]] != '\''
-			&& cmd[(*i)[0]][(*i)[1]] != '\"' && cmd[(*i)[0]][(*i)[1]]
-			&& cmd[(*i)[0]][(*i)[1]] != '$' && cmd[(*i)[0]][(*i)[1]] != ' '
-			&& cmd[(*i)[0]][(*i)[1]] != '?')
+	while (check_env(cmd, &i))
 	{
 		k++;
-		(*i)[1]++;
+		i[1]++;
 	}
-	if (cmd[(*i)[0]][(*i)[1]] != '?')
-		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]],
-						(*i)[1] - k - 1), ft_getenv(env,
-						ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k))),
-				ft_strndup(cmd[(*i)[0]] + (*i)[1],
-					ft_strlen(cmd[(*i)[0]] + (*i)[1])));
+	if (cmd[i[0]][i[1]] != '?')
+		cmd[i[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[i[0]], i[1] - k - 1), ft_getenv(env, ft_strndup(cmd[i[0]] + i[1] - k, k))), ft_strdup(cmd[i[0]] + i[1]));
 	else
-		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], (*i)[1]
-						- 1), ft_strdup(ft_itoa(pi))), ft_strndup(cmd[(*i)[0]]
-					+ (*i)[1] + 1, ft_strlen(cmd[(*i)[0]] + (*i)[1] + 1)));
+		cmd[i[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[i[0]], i[1] - 1), ft_strdup(ft_itoa(pi))), ft_strdup(cmd[i[0]] + i[1] + 1));
 }
 
 int	ft_counttochar(char *src, char ch)

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   01_0main_util.c                                    :+:      :+:    :+:   */
+/*   01_3main_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:59:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:23:05 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/10/12 16:41:56 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/10/12 17:00:12 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-void	free_s(char *command, char **check, char **temp_env)
+int	check_env(char **cmd, int **i)
 {
-	if (command)
-		free(command);
-	if (check)
-		free_chardstar(check);
-	if (temp_env)
-		free_chardstar(temp_env);
-	wait(NULL);
-	if (!access(".here_doc", F_OK))
-		unlink(".here_doc");
-	if (!access(".input_file", F_OK))
-		unlink(".input_file");
+	if (cmd[(*i)[0]][(*i)[1]] && cmd[(*i)[0]][(*i)[1]] != '\'')
+		return (1);
+	if (cmd[(*i)[0]][(*i)[1]] != '\"' && cmd[(*i)[0]][(*i)[1]] != '$')
+		return (1);
+	if (cmd[(*i)[0]][(*i)[1]] != ' ' && cmd[(*i)[0]][(*i)[1]] != '?')
+		return (1);
+	return (0);
 }
