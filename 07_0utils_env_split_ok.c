@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_0utils_env_split_ok.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:27:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:33:59 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	write_env_utils(int fd, char **envp, char *first_dir)
 		{
 			write(fd, *envp, 5);
 			write(fd, first_dir, ft_strlen(first_dir));
-			write(fd, "/bin/:", 6);
+			write(fd, "/bin:", 5);
+			write(fd, first_dir, ft_strlen(first_dir));
+			write(fd, ":", 1);
 			write(fd, *envp + 5, ft_strlen(*envp + 5));
 		}
 		write(fd, "\n", 1);
@@ -34,10 +36,19 @@ void	write_env(char **envp, char *first_dir)
 {
 	int			fd;
 	struct stat	st;
+	char		**temp_env;
 	char		*file_path;
 
+	temp_env = envp;
 	file_path = ft_strcat(ft_strdup(first_dir), ft_strdup("/.minishell.env"));
 	fd = open(file_path, O_WRONLY | O_CREAT, 0777);
+	while (*temp_env)
+	{
+		if (!ft_strncmp(*temp_env, "SHELL=", 5))
+			*temp_env = ft_strcat(ft_strcat(ft_strdup("SHELL="), \
+				ft_strdup(first_dir)), ft_strdup("/minishell"));
+		temp_env++;
+	}
 	stat(file_path, &st);
 	if (!st.st_size)
 		write_env_utils(fd, envp, first_dir);

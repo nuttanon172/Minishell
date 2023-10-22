@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:14:52 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:33:25 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:28:50 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,17 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int	main(void)
+int	main(int argc, char **argv, char **env)
 {
-	struct stat	st;
-	char		*string;
-	int			fd;
+	int	i;
 
-	fd = open(".minishell.env", O_RDONLY);
-	stat(".minishell.env", &st);
-	string = (char *)malloc(sizeof(char) * (st.st_size + 1));
-	if (!string)
-		return (close(fd), EXIT_FAILURE);
-	string[st.st_size] = '\0';
-	read(fd, string, st.st_size);
-	printf("%s", string);
-	return (close(fd), free(string), 0);
+	i = 0;
+	(void)argc;
+	(void)argv;
+	while (env[i])
+	{
+		printf("%s\n", env[i]);
+		i++;
+	}
+	return (0);
 }

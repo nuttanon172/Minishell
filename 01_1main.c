@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 12:38:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:32:21 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ int	openfile(char *fname, char mode)
 	return (fd);
 }
 
+int	check_otherbuilt(char *argv)
+{
+	return (ft_strcmp(argv, "echo")
+		&& ft_strcmp(argv, "env") && ft_strcmp(argv, "pwd")
+		&& ft_strcmp(argv, "exit"));
+}
+
 char	*get_path(char *argv, char **first_dir)
 {
 	char	**path;
@@ -73,7 +80,8 @@ char	*get_path(char *argv, char **first_dir)
 	char	*stjoin;
 
 	i = 0;
-	if (!ft_strcmp(argv, "cd"))
+	if (!ft_strcmp(argv, "cd") || !ft_strcmp(argv, "unset") || !ft_strcmp(argv, \
+		"export") || (!access(argv, X_OK) && check_otherbuilt(argv)))
 		return (argv);
 	temp = ft_getenv(first_dir, ft_strndup("PATH", 4));
 	path = ft_split_c(temp, ':');
@@ -90,12 +98,6 @@ char	*get_path(char *argv, char **first_dir)
 	free_chardstar(path);
 	get_path_util(argv);
 	return (argv);
-}
-
-void	free_re_arg(t_argtable **temp)
-{
-	free_chardstar((*temp)->redirection);
-	free_chardstar((*temp)->argv);
 }
 
 char	*get_command(char *str)

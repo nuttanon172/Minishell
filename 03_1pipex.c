@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_1pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/08 16:55:17 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:27:11 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,34 +59,6 @@ void	write_to_file_pfd(int fd, int writefile)
 	close(writefile);
 	close(fd);
 	exit(0);
-}
-
-int	read_default_fd(t_argtable **arg_table)
-{
-	size_t	i;
-	int		fd;
-	char	*ans;
-
-	i = 0;
-	fd = 0;
-	ans = NULL;
-	while ((*arg_table)->redirection[i])
-	{
-		if (!ft_strcmp((*arg_table)->redirection[i], "heredoc"))
-		{
-			here_doc((*arg_table)->heredoc_kw);
-			ans = ft_strcat(ans, open_inputdoc(".here_doc"));
-		}
-		else if (!ft_strcmp((*arg_table)->redirection[i], "infile"))
-			ans = ft_strcat(ans, open_inputdoc((*arg_table)->infile));
-		i++;
-	}
-	if (*ans)
-	{
-		write_input_dummy(ans);
-		fd = open(".input_file", O_RDONLY);
-	}
-	return (fd);
 }
 
 char	*open_inputdoc(char *filename)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   06_0utils_table_ok.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:15:04 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/06 17:35:29 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/20 04:53:30 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ t_argtable	*create_table(char ***cmda, char **first_dir)
 		{
 			if (!s.temp->cmd)
 				s.temp->cmd = get_path(rep_q(s.cmd[s.i]), first_dir);
-			if (ft_strcmp(s.temp->cmd, "cd"))
-				s.temp->argv[s.j++] = get_command(rep_q(s.cmd[s.i++]));
-			else
-				s.temp->argv[s.j++] = replace_q(ft_strdup(s.cmd[s.i++]));
+			s.temp->argv[s.j++] = replace_q(ft_strdup(s.cmd[s.i++]));
 		}
 	}
 	return (s.arg_table);

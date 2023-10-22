@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:53:51 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 16:59:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/20 03:32:33 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 void	check_inq(char ch, bool *is_indq, bool *is_insq)
 {
 	if (ch == '\"')
-		*is_indq = !(*is_indq);
-	if (!is_indq && ch == '\'')
-		*is_insq = !(*is_insq);
+	{
+		*(is_indq) = !(*(is_indq));
+	}
+	if (!(*is_indq) && ch == '\'')
+	{
+		*(is_insq) = !(*(is_insq));
+	}
 }
 
 char	*return_lebel(char *c)

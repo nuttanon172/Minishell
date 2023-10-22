@@ -12,31 +12,35 @@
 
 #include "minishell.h"
 
-char	*check_quote(int *signal, char *line, int *i, char what_quote)
+char	**check_quote(int *signal, char **line, int *i, char what_quote)
 {
 	while (*signal != 0)
 	{
-		if (!line[*i])
-			line = ft_strcat(line, readline(">"));
+		if (!(*line)[*i])
+		{
+			*line = ft_strcat(*line, readline(">"));
+		}
 		else
 			(*i)++;
-		if (line[*i] == what_quote)
-			*signal = 0;
+		if ((*line)[*i] == what_quote)
+		{
+			*signal = !(*signal);
+		}
 	}
 	return (line);
 }
 
-void	get_from_readline_util(char	*line, int *signal)
+void	get_from_readline_util(char	**line, int *signal)
 {
 	int	i;
 
 	i = 0;
-	while (line[i])
+	while ((*line)[i])
 	{
-		if (line[i] == '\"' && *signal == 0)
+		if ((*line)[i] == '\"' && *signal == 0)
 			*signal = 1;
 		line = check_quote(signal, line, &i, '\"');
-		if (line[i] == '\'' && *signal == 0)
+		if ((*line)[i] == '\'' && *signal == 0)
 			*signal = 1;
 		line = check_quote(signal, line, &i, '\'');
 		i++;
@@ -63,7 +67,7 @@ char	*get_from_readline(void)
 		exit(0);
 	}
 	free(dir);
-	get_from_readline_util(line, &signal);
+	get_from_readline_util(&line, &signal);
 	check_pipe_and_return_line(&line);
 	if (*line)
 		add_history(line);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/09 16:46:36 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 16:46:41 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/18 00:00:40 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	sig_handler(int sig_number)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_redisplay();
+	g_pi = 130;
 }

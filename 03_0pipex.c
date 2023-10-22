@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/06 18:01:16 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:26:35 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 	pid = fork();
 	if (!pid)
 	{
-		dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
+		if (ft_strcmp((*temp)->argv[0], "minishell")
+			&& ft_strcmp((*temp)->argv[0], "./minishell"))
+			dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
 		execve((*temp)->cmd, (*temp)->argv, first_dir);
 		return (close(pipeid[1]), exit(127), 1);
 	}
@@ -57,16 +59,15 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 	return (i);
 }
 
-void	defualt_input(t_argtable **temp)
+int	check_builtin(t_argtable **temp, char **envp)
 {
-	int	fd;
-
-	fd = 0;
-	if ((*temp)->infile || (*temp)->heredoc_kw)
-	{
-		fd = read_default_fd(temp);
-		dup2_and_close(fd, fd, STDIN_FILENO);
-	}
+	if (!ft_strcmp((*temp)->cmd, "unset"))
+		ft_unset(envp, (*temp)->argv[1]);
+	else if (!ft_strcmp((*temp)->cmd, "export"))
+		ft_export(envp, (*temp)->argv[1]);
+	else
+		return (0);
+	return (1);
 }
 
 int	sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir)
@@ -89,6 +90,8 @@ int	sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir)
 	while ((*temp)->next)
 	{
 		(*temp) = (*temp)->next;
+		if (!ft_strcmp((*temp)->argv[0], "minishell"))
+			break ;
 		return (execve_command(temp, first_dir));
 	}
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_3main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/12 19:23:51 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/22 22:31:38 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 			&& cmd[(*i)[0]][(*i)[1]] != '$' && cmd[(*i)[0]][(*i)[1]] != ' ')
 	{
 		k++;
-		printf("ch = %c\n", cmd[(*i)[0]][(*i)[1]]);
-		printf("k = %d\n", k);
 		(*i)[1]++;
 	}
 	if (cmd[(*i)[0]][(*i)[1]] != '?')
-		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], (*i)[1] - k - 1), ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k))), ft_strdup(cmd[(*i)[0]] + (*i)[1]));
-	else
+		cmd[(*i)[0]] = ft_strcat(ft_strcat(
+					ft_strndup(cmd[(*i)[0]], (*i)[1] - k - 1), ft_getenv(env,
+						ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k))),
+				ft_strdup(cmd[(*i)[0]] + (*i)[1]));
+	else if (cmd[(*i)[0]][(*i)[1]] == '?')
 		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], (*i)[1]
 						- 1), ft_strdup(ft_itoa(pi))), ft_strndup(cmd[(*i)[0]]
 					+ (*i)[1] + 1, ft_strlen(cmd[(*i)[0]] + (*i)[1] + 1)));
@@ -65,7 +66,7 @@ int	ft_counttochar(char *src, char ch)
 
 int	check_lex(char cmd)
 {
-	if (cmd == '|' || cmd == '<' || cmd == '>' || cmd == '&')
+	if (cmd == '|' || cmd == '<' || cmd == '>')
 		return (1);
 	else
 		return (0);

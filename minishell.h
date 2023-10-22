@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/12 19:10:42 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/20 04:09:54 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 # define HISTORY_FILE "/.isworld_history"
 # define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
+
+int	g_pi;
 
 typedef struct s_env
 {
@@ -96,13 +98,13 @@ void		create_table_redirect(t_argtable **arg_table, \
 void		free_re_arg(t_argtable **temp);
 int			create_table_pipe_or(t_argtable **arg_table, int *j, \
 				int *k, char **cmd);
-int			start_shell(int pi, char *first_dir);
+int			start_shell(char **temp_env);
 void		write_env(char **envp, char *first_dir);
 void		add_space(int *j, int *i, char **ans, char **cmd);
 void		is_in_q(char c, bool *is_indq, bool *is_insq);
 void		sig_handler(int sig_number);
 char		*ft_strcat(char *src, char *dst);
-char		*check_quote(int *signal, char *line, int *i, char what_quote);
+char		**check_quote(int *signal, char **line, int *i, char what_quote);
 void		sub_replace_veriable(char **cmd, int **i, int pi, char **env);
 void		check_pipe_and_return_line(char **line);
 void		set_int_zero(t_table *s);
@@ -113,7 +115,7 @@ int			count_command_arg(char **cmd);
 int			count_redirection(char **cmd);
 int			check_char_sptable(t_argtable *arg_table);
 int			check_spcharactor(char *str);
-void		chang_directory(char *path);
+void		chang_directory(char *path, char **env);
 int			count_newline(char *src);
 int			count_to_newline(char *src);
 char		**ft_split_to_env(char *string, char ch);
@@ -134,6 +136,16 @@ void		dup2_and_close(int closed, int new, int old);
 int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
 void		get_path_util(char *argv);
 void		check_inq(char ch, bool *is_indq, bool *is_insq);
-void		free_s(char *command, char **check, char **temp_env);
-
+void		free_s(char *command, char **check);
+void		find_home_old(char **previous, char **home, char **temp);
+void		my_env(char **envp, char *first_dir);
+int			ft_atoi(char *nbr);
+void		add_path(char **env, char *first_dir);
+char		**ft_strddup(char **envp);
+int			check_in_env(char **envp, char *check);
+void		change_level(char **temp_env);
+void		ft_unset(char **envp, char *argv);
+size_t		ft_arglen(char *argv);
+int			ft_export(char **envp, char *argv);
+int			check_builtin(t_argtable **temp, char **envp);
 #endif
