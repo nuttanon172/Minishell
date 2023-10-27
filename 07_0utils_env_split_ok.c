@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   07_0utils_env_split_ok.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 16:42:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/22 22:33:59 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/19 19:59:52 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	write_env_utils(int fd, char **envp, char *first_dir)
 
 void	write_env(char **envp, char *first_dir)
 {
+
 	int			fd;
 	struct stat	st;
 	char		**temp_env;
@@ -45,8 +46,7 @@ void	write_env(char **envp, char *first_dir)
 	while (*temp_env)
 	{
 		if (!ft_strncmp(*temp_env, "SHELL=", 5))
-			*temp_env = ft_strcat(ft_strcat(ft_strdup("SHELL="), \
-				ft_strdup(first_dir)), ft_strdup("/minishell"));
+			*temp_env = ft_strcat(ft_strcat(ft_strdup("SHELL="), ft_strdup(first_dir)), ft_strdup("/minishell"));
 		temp_env++;
 	}
 	stat(file_path, &st);

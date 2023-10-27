@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/22 22:27:11 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:46:58 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,14 @@ void	write_to_file_pfd(int fd, int writefile)
 	exit(0);
 }
 
-char	*open_inputdoc(char *filename)
+char	*open_inputdoc(char *filename, int pipeid)
 {
 	struct stat	st;
 	char		*string;
 	int			fd;
 
+	if (access(filename, F_OK))
+		return (close(pipeid), perror(filename), exit(1), NULL);
 	fd = open(filename, O_RDONLY, 0777);
 	if (fd < 0)
 		perror(filename);
@@ -84,6 +86,8 @@ void	write_input_dummy(char *string)
 {
 	int	fd;
 
+	if (!access(".input_file", F_OK))
+		unlink(".input_file");
 	fd = open(".input_file", O_CREAT | O_RDWR, 0777);
 	write(fd, string, ft_strlen(string));
 	free(string);

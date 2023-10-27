@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 19:58:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/20 03:09:42 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/25 22:28:59 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,35 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
+size_t	ft_strlen(const char *s)
+{
+	size_t	ct;
+
+	if (!s || !*s)
+		return (0);
+	ct = 0;
+	while (s[ct] != '\0')
+		ct++;
+	return (ct);
+}
+
+int	is_flagn(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	if (s[i] == '-')
+		i++;
+	while (s[i])
+	{
+		if (s[i] == 'n')
+			i++;
+		else
+			return (1);
+	}
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	int	i;
@@ -35,7 +64,7 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (0);
 	i = 1;
-	if (!ft_strncmp(argv[i], "-n", 2))
+	if (!is_flagn(argv[i]))
 		i++;
 	while (argv[i])
 	{
@@ -43,7 +72,7 @@ int	main(int argc, char **argv)
 		if (argv[i])
 			printf(" ");
 	}
-	if (ft_strncmp(argv[1], "-n", 2))
+	if (is_flagn(argv[1]))
 		printf("\n");
 	return (0);
 }

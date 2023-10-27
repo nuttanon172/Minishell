@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_3main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/22 22:31:38 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/25 18:11:09 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 {
-	int	k;
+	int		k;
+	char	*t;
 
 	(*i)[1]++;
 	k = 0;
@@ -25,11 +26,13 @@ void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 		k++;
 		(*i)[1]++;
 	}
+	if (ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k)))
+		t = ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k));
+	else
+		t = ft_strndup(cmd[(*i)[0]] + (*i)[1] - k - 1, k + 1);
 	if (cmd[(*i)[0]][(*i)[1]] != '?')
-		cmd[(*i)[0]] = ft_strcat(ft_strcat(
-					ft_strndup(cmd[(*i)[0]], (*i)[1] - k - 1), ft_getenv(env,
-						ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k))),
-				ft_strdup(cmd[(*i)[0]] + (*i)[1]));
+		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], \
+			(*i)[1] - k - 1), t), ft_strdup(cmd[(*i)[0]] + (*i)[1]));
 	else if (cmd[(*i)[0]][(*i)[1]] == '?')
 		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], (*i)[1]
 						- 1), ft_strdup(ft_itoa(pi))), ft_strndup(cmd[(*i)[0]]

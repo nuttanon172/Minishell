@@ -3,42 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/22 22:32:21 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:38:26 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	here_doc(char *argv)
+char	*here_doc(char *argv)
 {
 	char	*buffer;
-	int		f;
-	ssize_t	bytes_read;
+	char	*ans;
+	int		i;
+	int		fd;
 
-	f = openfile(".here_doc", 'O');
-	buffer = (char *)malloc(sizeof(char) * (ft_strlen(argv) + 1));
-	if (!buffer)
-		return ;
-	while (write(1, "heredoc> ", 9))
+	i = 0;
+	fd = dup(STDERR_FILENO);
+	buffer = NULL;
+	buffer = (char *)malloc(sizeof(char) * (ft_strlen(argv) + 2));
+	ans = NULL;
+	while (1)
 	{
-		while (1)
-		{
-			bytes_read = read(STDIN_FILENO, buffer, ft_strlen(argv) + 1);
-			if (buffer[bytes_read - 1] == '\n'
-				&& !ft_strncmp(buffer, argv, ft_strlen(argv)))
-			{
-				close(f);
-				free(buffer);
-				return ;
-			}
-			else if (write(f, buffer, bytes_read)
-				&& buffer[bytes_read - 1] == '\n' && buffer)
-				break ;
-		}
+		if (i == 0 || buffer[i - 1] == '\n')
+			write(fd, "heredoc> ", 9);
+		i = read(2, buffer, ft_strlen(argv) + 1);
+		buffer[i] = '\0';
+		if ((i <= 0 || !ft_strncmp(buffer, argv, ft_strlen(argv)))
+			&& buffer[i - 1] == '\n')
+			break ;
+		else
+			ans = ft_strcat(ans, ft_strdup(buffer));
 	}
+	free(buffer);
+	close(fd);
+	return (ans);
 }
 
 int	openfile(char *fname, char mode)
@@ -98,6 +98,12 @@ char	*get_path(char *argv, char **first_dir)
 	free_chardstar(path);
 	get_path_util(argv);
 	return (argv);
+}
+
+void	free_re_arg(t_argtable **temp)
+{
+	free_chardstar((*temp)->redirection);
+	free_chardstar((*temp)->argv);
 }
 
 char	*get_command(char *str)

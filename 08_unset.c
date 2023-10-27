@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   08_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 02:03:20 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/22 22:28:29 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/25 21:38:12 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,45 @@ size_t	ft_arglen(char *argv)
 	size_t	i;
 
 	i = 0;
-	while (argv[i] && argv[i] != '=')
+	while (argv[i] && argv[i] != '=' && !(argv[i] == '+' && argv[i + 1] == '='))
 		i++;
 	return (i);
 }
 
-void	ft_unset(char **envp, char *argv)
+static void	ft_unset_util(char **envp, char *argv)
 {
-	char	**temp;
-	char	**temp2;
+	int		i;
+	int		j;
+	char	*temp;
 
-	temp = envp;
-	temp2 = envp;
-	if ((ft_strlen(argv) != ft_arglen(argv)))
-		write(2, "minishell: unset: not a valid identifier\n", 42);
-	if (!argv || (ft_strlen(argv) != ft_arglen(argv)))
+	i = 0;
+	j = 0;
+	if (!check_ex_unset(argv, "unset"))
 		return ;
-	while (*temp)
+	while (envp[i] && envp[j])
 	{
-		if (!ft_strncmp(*temp, argv, ft_strlen(argv)))
-			temp2++;
-		if (*temp && !*temp2)
-		{
-			free(*temp);
-			*temp = NULL;
+		if (!ft_strncmp(envp[i], argv, ft_strlen(argv)))
+			j++;
+		temp = envp[i];
+		if (!envp[j])
 			break ;
-		}
-		if (*temp2 && *temp != *temp2)
-			*temp = *temp2;
-		temp++;
-		temp2++;
+		envp[i] = ft_strdup(envp[j]);
+		free(temp);
+		temp = NULL;
+		j++;
+		i++;
 	}
+	if (i == j)
+		return ;
+	free(envp[i]);
+	envp[i] = 0;
+}
+
+void	ft_unset(char **envp, char **argv)
+{
+	int		i;
+
+	i = 1;
+	while (argv[i])
+		ft_unset_util(envp, argv[i++]);
 }

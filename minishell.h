@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/20 04:09:54 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:03:16 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@
 
 # define HISTORY_FILE "/.isworld_history"
 # define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
-
-int	g_pi;
 
 typedef struct s_env
 {
@@ -63,6 +61,8 @@ typedef struct s_table
 	int					k;
 }	t_table;
 
+int	g_pi;
+
 char		*get_from_readline(void);
 size_t		ft_strlen(const char *s);
 char		**ft_split_c(char *string, char ch);
@@ -84,7 +84,7 @@ void		free_all_table(t_argtable *arg_table);
 void		free_chardstar(char **path);
 char		*get_path(char *argv, char **first_dir);
 int			ft_strcmp(char *src, char *dst);
-void		here_doc(char *argv);
+char		*here_doc(char *argv);
 int			openfile(char *fname, char mode);
 void		initialize_data_table(t_argtable **temp, char **cmd);
 char		*ft_strdup(char *src);
@@ -127,11 +127,11 @@ int			rl_on_new_line(void);
 void		rl_redisplay(void);
 void		rl_replace_line(const char *text, int clear_undo);
 int			execve_command(t_argtable **arg_table, char **first_dir);
-int			read_default_fd(t_argtable **arg_table);
+int			read_default_fd(t_argtable **arg_table, int pipeid);
 void		print_file_des(int fds, char *s, char c);
-char		*open_inputdoc(char *filename);
+char		*open_inputdoc(char *filename, int pipeid);
 void		write_to_file_pfd(int fd, int writefile);
-void		defualt_input(t_argtable **temp);
+void		defualt_input(t_argtable **temp, int pipeid);
 void		dup2_and_close(int closed, int new, int old);
 int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
 void		get_path_util(char *argv);
@@ -144,8 +144,12 @@ void		add_path(char **env, char *first_dir);
 char		**ft_strddup(char **envp);
 int			check_in_env(char **envp, char *check);
 void		change_level(char **temp_env);
-void		ft_unset(char **envp, char *argv);
+void		ft_unset(char **envp, char **argv);
 size_t		ft_arglen(char *argv);
-int			ft_export(char **envp, char *argv);
-int			check_builtin(t_argtable **temp, char **envp);
+char		**ft_export(char **envp, char **argv);
+int			check_builtin(t_argtable **temp, char ***envp);
+void		isdir(const char *fileName);
+int			check_ex_unset(char *argv, char *cmd);
+void		printerror(char *cmd, char *command);
+
 #endif

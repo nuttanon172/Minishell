@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/20 05:22:35 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:03:08 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**ft_strddup(char **envp)
 
 	i = 0;
 	temp = envp;
-	while (*temp)
+	while (*temp && temp)
 	{
 		i++;
 		temp++;
@@ -47,9 +47,8 @@ char	**ft_strddup(char **envp)
 	temp = envp;
 	while (i >= 0)
 	{
-		env[i] = ft_strdup(*temp);
+		env[i] = ft_strdup(temp[i]);
 		i--;
-		temp++;
 	}
 	return (env);
 }
@@ -137,20 +136,6 @@ int	ft_atoi(char *nbr)
 	return (ans);
 }
 
-// char	*gnl(char *line)
-// {
-// 	int		i;
-// 	char	*ans;
-
-// 	i=0;
-// 	while (line[i] && line[i] != '\n')
-// 		i++;
-// 	// if (line[i] == '\n')
-// 	// 	i++;
-// 	ans = ft_strndup(line, i);
-// 	return (free(line), ans);
-// }
-
 int	start_shell(char **temp_env)
 {
 	t_argtable	*arg_table;
@@ -166,12 +151,13 @@ int	start_shell(char **temp_env)
 			arg_table = create_table(&cmd, temp_env);
 			temp_table = arg_table;
 			if ((!ft_strcmp(arg_table->cmd, "cd")
-					|| check_builtin(&arg_table, temp_env)) && arg_table->next)
+					|| check_builtin(&arg_table, &temp_env)) && arg_table->next)
 				temp_table = arg_table->next;
 			else if (!ft_strcmp(temp_table->cmd, "cd") && !temp_table->next)
 				chang_directory(temp_table->argv[1], temp_env);
 			else if (check_char_sptable(temp_table))
 				g_pi = pipex(&temp_table, temp_env);
+			(void)temp_table;
 			free_all_table(arg_table);
 		}
 		free_s(NULL, cmd);

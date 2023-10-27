@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/07 20:55:56 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/17 17:54:03 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:49:33 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	ft_strcmp(char *src, char *dst)
 
 	t_src = src;
 	t_dst = dst;
+	if (!src)
+		return (src - dst);
 	while (*t_src && *t_dst && *t_src == *t_dst)
 	{
 		t_src++;
