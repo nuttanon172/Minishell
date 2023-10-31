@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:45:33 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/27 10:51:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:43:02 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,20 +51,6 @@ char	*ft_itoa(int nbr)
 		n /= 10;
 	}
 	return (result);
-}
-
-void	free_chardstar(char **path)
-{
-	int	i;
-
-	i = 0;
-	while (path[i])
-	{
-		free(path[i]);
-		path[i++] = NULL;
-	}
-	free(path);
-	path = NULL;
 }
 
 void	chang_directory(char *path, char **env)

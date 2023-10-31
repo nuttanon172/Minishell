@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/27 11:03:08 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:38:09 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,124 +16,23 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	first_dir[4096];
 	char	**env;
+	char	*str;
 
 	(void)argc;
 	(void)argv;
+	dup2(dup(STDIN_FILENO), STDIN_FILENO);
 	g_pi = 0;
+	str = getenv("SHLVL");
 	getcwd(first_dir, sizeof(first_dir));
 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sig_handler);
+	if (ft_atoi(str) == 1)
+		signal(SIGINT, sig_handler);
+	else
+		signal(SIGINT, SIG_IGN);
 	env = ft_strddup(envp);
 	my_env(env, first_dir);
 	g_pi = start_shell(env);
 	return (g_pi);
-}
-
-char	**ft_strddup(char **envp)
-{
-	int		i;
-	char	**temp;
-	char	**env;
-
-	i = 0;
-	temp = envp;
-	while (*temp && temp)
-	{
-		i++;
-		temp++;
-	}
-	env = (char **)malloc(sizeof(char *) * (i + 1));
-	env[i--] = NULL;
-	temp = envp;
-	while (i >= 0)
-	{
-		env[i] = ft_strdup(temp[i]);
-		i--;
-	}
-	return (env);
-}
-
-void	my_env(char **envp, char *first_dir)
-{
-	char	**temp_env;
-	int		i;
-	char	*value;
-
-	temp_env = envp;
-	value = ft_strcat(ft_strcat(ft_strdup("SHELL="),
-				ft_strdup(first_dir)), ft_strdup("/minishell"));
-	i = check_in_env(envp, value);
-	while (*temp_env)
-	{
-		if (!i && !ft_strncmp(*temp_env, "PATH=", 5))
-			add_path(temp_env, first_dir);
-		else if (!i && !ft_strncmp(*temp_env, "SHELL=", 6))
-		{
-			free(*temp_env);
-			*temp_env = ft_strdup(value);
-		}
-		else if (i && !ft_strncmp(*temp_env, "SHLVL=", 6))
-			change_level(temp_env);
-		temp_env++;
-	}
-	free(value);
-}
-
-void	change_level(char **temp_env)
-{
-	char	*temp;
-
-	temp = *temp_env;
-	*temp_env = ft_strcat(ft_strdup("SHLVL="),
-			ft_itoa(ft_atoi(*temp_env) + 1));
-	free(temp);
-}
-
-int	check_in_env(char **envp, char *check)
-{
-	char	**temp;
-
-	temp = envp;
-	while (*temp)
-	{
-		if (!ft_strcmp(*temp, check))
-			return (1);
-		temp++;
-	}
-	return (0);
-}
-
-void	add_path(char **env, char *first_dir)
-{
-	char	*path1;
-	char	*path2;
-	char	*remain;
-	char	*temp;
-
-	temp = *env;
-	path1 = ft_strcat(ft_strdup("PATH="), ft_strdup(first_dir));
-	path1 = ft_strcat(path1, ft_strdup("/bin:"));
-	path2 = ft_strcat(ft_strdup(first_dir), ft_strdup(":"));
-	remain = ft_strdup(temp + 5);
-	free(*env);
-	*env = ft_strcat(ft_strcat(path1, path2), remain);
-}
-
-int	ft_atoi(char *nbr)
-{
-	int		ans;
-	char	*temp;
-
-	temp = nbr;
-	ans = 0;
-	while (*temp && (*temp < '0' || *temp > '9'))
-		temp++;
-	while (*temp && *temp >= '0' && *temp <= '9')
-	{
-		ans = (10 * (ans) + (*temp - '0'));
-		temp++;
-	}
-	return (ans);
 }
 
 int	start_shell(char **temp_env)
@@ -157,7 +56,6 @@ int	start_shell(char **temp_env)
 				chang_directory(temp_table->argv[1], temp_env);
 			else if (check_char_sptable(temp_table))
 				g_pi = pipex(&temp_table, temp_env);
-			(void)temp_table;
 			free_all_table(arg_table);
 		}
 		free_s(NULL, cmd);
@@ -198,10 +96,11 @@ int	check_spcharactor(char *str)
 		|| str[0] == ';' || str[0] == '&' || str[0] == '#' || str[0] == '-'
 		|| str[0] == '(' || str[0] == ')')
 	{
-		write(2, "Syntax error near unexpected token: '", 37);
+		write(2, "Syntax error near unexpected token: ", 37);
 		if (str)
 			write (2, str, ft_strlen(str));
 		write(2, "'\n", 2);
+		g_pi = 2;
 		return (1);
 	}
 	return (0);
@@ -223,7 +122,7 @@ int	check_heredoc(char **cmd)
 				|| !ft_strcmp(cmd[i + 1], ">") || !ft_strcmp(cmd[i + 1], ">>"))
 			{
 				write(2, "Syntax error near unexpected token: ''\n", 39);
-				status = 1;
+				status = 2;
 			}
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/27 11:03:16 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:13:30 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 # define HISTORY_FILE "/.isworld_history"
 # define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
+
+int	g_pi;
 
 typedef struct s_env
 {
@@ -60,8 +62,6 @@ typedef struct s_table
 	int					j;
 	int					k;
 }	t_table;
-
-int	g_pi;
 
 char		*get_from_readline(void);
 size_t		ft_strlen(const char *s);
@@ -151,5 +151,7 @@ int			check_builtin(t_argtable **temp, char ***envp);
 void		isdir(const char *fileName);
 int			check_ex_unset(char *argv, char *cmd);
 void		printerror(char *cmd, char *command);
+int			child_process(t_argtable **temp, int pipeid[2], char ***first_dir);
+void		sub_util(void);
 
 #endif

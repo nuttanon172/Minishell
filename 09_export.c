@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   09_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 02:08:34 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/25 20:11:29 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:54:32 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,30 @@ int	ft_cmpstrn(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
+char	**rep_envp(char **envp2, char **envp, int i, char *argv)
+{
+	envp2 = (char **)malloc(sizeof(char *) * (i + 2));
+	if (!envp2)
+		return (NULL);
+	i = 0;
+	while (envp[i++])
+		envp2[i - 1] = ft_strdup(envp[i - 1]);
+	if (argv[ft_arglen(argv)] == '+')
+		envp2[i - 1] = ft_strcat(ft_strndup(argv, ft_arglen(argv)) \
+			, ft_strdup((argv + ft_arglen(argv) + 1)));
+	else
+		envp2[i - 1] = ft_strdup(argv);
+	envp2[i] = NULL;
+	return (envp2);
+}
+
 static char	**ft_rpenv(char **envp, char *argv)
 {
 	size_t	i;
 	char	**envp2;
 
 	i = 0;
+	envp2 = NULL;
 	if (!argv)
 		return (0);
 	while (envp[i] && envp)
@@ -48,22 +66,11 @@ static char	**ft_rpenv(char **envp, char *argv)
 				free(envp[i]);
 				envp[i] = ft_strdup(argv);
 			}
-			return (envp) ;
+			return (envp);
 		}
 		i++;
 	}
-	envp2 = (char **)malloc(sizeof(char *) * (i + 2));
-	if (!envp2)
-		return (NULL);
-	i = 0;
-	while (envp[i++])
-		envp2[i - 1] = ft_strdup(envp[i - 1]);
-	if (argv[ft_arglen(argv)] == '+')
-		envp2[i - 1] = ft_strcat(ft_strndup(argv, ft_arglen(argv)) \
-			, ft_strdup((argv + ft_arglen(argv) + 1)));
-	else
-		envp2[i - 1] = ft_strdup(argv);
-	envp2[i] = NULL;
+	envp2 = rep_envp(envp2, envp, i, argv);
 	return (free_chardstar(envp), envp2);
 }
 
@@ -91,20 +98,3 @@ char	**ft_export(char **envp, char **argv)
 	}
 	return (envp);
 }
-
-// void	ft_export(char **envp, char *argv)
-// {
-	// size_t	i;
-	// int		fd;
-
-	// ft_replace(envp, argv);
-	// i = 0;
-	// fd = open(".minishell.env", O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	// while (envp[i])
-	// {
-	// 	write(fd, envp[i], ft_strlen(envp[i]));
-	// 	write (fd, "\n", 1);
-	// 	i++;
-	// }
-	// close(fd);
-// }

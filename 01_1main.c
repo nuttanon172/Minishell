@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/27 10:38:26 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/10/31 18:03:03 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ char	*here_doc(char *argv)
 		else
 			ans = ft_strcat(ans, ft_strdup(buffer));
 	}
-	free(buffer);
-	close(fd);
-	return (ans);
+	return (free(buffer), close(fd), ans);
 }
 
 int	openfile(char *fname, char mode)
@@ -80,8 +78,10 @@ char	*get_path(char *argv, char **first_dir)
 	char	*stjoin;
 
 	i = 0;
-	if (!ft_strcmp(argv, "cd") || !ft_strcmp(argv, "unset") || !ft_strcmp(argv, \
-		"export") || (!access(argv, X_OK) && check_otherbuilt(argv)))
+	if ((!ft_strcmp(argv, "cd") || !ft_strcmp(argv, "unset") \
+		|| !ft_strcmp(argv, "export") || (!access(argv, X_OK) \
+		&& check_otherbuilt(argv))) && ft_strcmp(argv, "minishell") \
+		&& ft_strcmp(argv, "minishell"))
 		return (argv);
 	temp = ft_getenv(first_dir, ft_strndup("PATH", 4));
 	path = ft_split_c(temp, ':');
@@ -95,15 +95,7 @@ char	*get_path(char *argv, char **first_dir)
 			return (free(argv), stjoin);
 		free(stjoin);
 	}
-	free_chardstar(path);
-	get_path_util(argv);
-	return (argv);
-}
-
-void	free_re_arg(t_argtable **temp)
-{
-	free_chardstar((*temp)->redirection);
-	free_chardstar((*temp)->argv);
+	return (free_chardstar(path), get_path_util(argv), argv);
 }
 
 char	*get_command(char *str)
