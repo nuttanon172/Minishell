@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/01 11:16:57 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:30:15 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ char		*ft_getenv(char **env, char	*var);
 int			ft_strncmp(char *src, char *cmp, size_t n);
 void		replace_variable(char **cmd, char **env, int pi);
 char		*ft_strcat(char *src, char *dst);
-int			count_qoute(char *cmd);
 char		*replace_q(char *cmd);
 void		clear_q(char **cmd);
 t_argtable	*create_table(char ***cmd, char **first_dir);

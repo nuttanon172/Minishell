@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_4main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:26:29 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/09 15:57:39 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:29:53 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*replace_q(char *cmd)
 	j = 0;
 	is_indq = false;
 	is_insq = false;
-	ans = (char *)malloc(ft_strlen(cmd) - count_qoute(cmd) + 1);
+	ans = (char *)malloc(ft_strlen(cmd) + 1);
 	if (!ans)
 		return (NULL);
 	while (cmd[i])
@@ -88,32 +88,4 @@ char	*replace_q(char *cmd)
 	}
 	ans[j] = '\0';
 	return (free(cmd), ans);
-}
-
-int	count_qoute(char *cmd)
-{
-	bool	is_indq;
-	bool	is_insq;
-	char	*temp;
-	int		i;
-
-	is_indq = false;
-	is_insq = false;
-	temp = cmd;
-	i = 0;
-	while (*temp)
-	{
-		if ((!is_insq && *temp == '\"') || (is_indq && *temp == '\''))
-		{
-			if (!is_insq && *temp == '\"')
-				is_indq = !is_indq;
-			if (!is_indq && *temp == '\'')
-				is_insq = !is_insq;
-			i++;
-		}
-		else if ((!is_indq && !is_insq) && (*temp == '\'' || *temp == '\"'))
-			i++;
-		temp++;
-	}
-	return (i);
 }

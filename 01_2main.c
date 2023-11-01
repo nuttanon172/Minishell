@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/20 05:18:02 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/01 18:29:11 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	replace_variable(char **cmd, char **env, int pi)
 		check_inq(cmd[i[0]][i[1]], &is_indq, &is_insq);
 		if ((!is_insq && cmd[i[0]][i[1]] == '$'))
 			sub_replace_veriable(cmd, &i, pi, env);
-		if (cmd[i[0]][i[1]])
+		if ((i[1] <= (int)ft_strlen(cmd[i[0]])) && cmd[i[0]][i[1]])
 			i[1]++;
 		else
 		{
