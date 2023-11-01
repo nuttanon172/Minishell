@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:38:09 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:16:19 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,14 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	first_dir[4096];
 	char	**env;
-	char	*str;
 
 	(void)argc;
 	(void)argv;
 	dup2(dup(STDIN_FILENO), STDIN_FILENO);
 	g_pi = 0;
-	str = getenv("SHLVL");
 	getcwd(first_dir, sizeof(first_dir));
 	signal(SIGQUIT, SIG_IGN);
-	if (ft_atoi(str) == 1)
-		signal(SIGINT, sig_handler);
-	else
-		signal(SIGINT, SIG_IGN);
+	signal(SIGINT, sig_handler);
 	env = ft_strddup(envp);
 	my_env(env, first_dir);
 	g_pi = start_shell(env);

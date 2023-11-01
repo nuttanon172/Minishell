@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/31 18:13:30 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/01 11:16:57 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include <sys/stat.h>
 # include <stdbool.h>
 # include <sys/wait.h>
+# include <sys/ioctl.h>
 
 # define HISTORY_FILE "/.isworld_history"
 # define PROMPT ":\033[0;34mIs\033[0;33mWorld\033[0;32m<$>\033[0m "
