@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 04:30:02 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 12:25:53 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,7 @@ int	check_spcharactor(char *str)
 		|| str[0] == ';' || str[0] == '&' || str[0] == '#' || str[0] == '-'
 		|| str[0] == '(' || str[0] == ')')
 	{
-		write(2, "Syntax error near unexpected token: ", 37);
-		if (str)
-			write (2, str, ft_strlen(str));
-		write(2, "'\n", 2);
+		write(2, "syntax error near unexpected token `newline'\n", 46);
 		g_pi = 2;
 		return (1);
 	}
@@ -116,7 +113,8 @@ int	check_heredoc(char **cmd)
 				|| !ft_strcmp(cmd[i + 1], "<")
 				|| !ft_strcmp(cmd[i + 1], ">") || !ft_strcmp(cmd[i + 1], ">>"))
 			{
-				write(2, "Syntax error near unexpected token: ''\n", 39);
+				write(2, "syntax error near unexpected token `newline'\n", 46);
+				g_pi = 2;
 				status = 2;
 			}
 		}
