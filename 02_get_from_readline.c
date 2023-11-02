@@ -82,7 +82,7 @@ void	check_pipe_and_return_line(char **line)
 	while (1)
 	{
 		i = ft_strlen((*line)) - 1;
-		while ((*line)[i] && i != 0 && ((*line)[i] == ' ' || (*line)[i] == '\t'
+		while (i >= 0 && (*line)[i] && i != 0 && ((*line)[i] == ' ' || (*line)[i] == '\t'
 					|| (*line)[i] == '\n' || (*line)[i] == '\v'
 				|| (*line)[i] == '\f'))
 			i--;
