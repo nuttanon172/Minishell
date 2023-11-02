@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 18:11:45 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 18:12:32 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 05:04:49 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir)
 	{
 		(*temp) = (*temp)->next;
 		sub_util();
-		if (!ft_strcmp((*temp)->argv[0], "minishell"))
-			break ;
 		return (execve_command(temp, first_dir));
 	}
 	return (-1);

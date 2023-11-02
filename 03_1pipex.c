@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_1pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:53:47 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:44:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 04:23:33 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,17 @@ char	*open_inputdoc(char *filename, int pipeid)
 	return (string);
 }
 
-void	write_input_dummy(char *string)
+int	write_input_dummy(char *string)
 {
 	int	fd;
 
 	if (!access(".input_file", F_OK))
 		unlink(".input_file");
 	fd = open(".input_file", O_CREAT | O_RDWR, 0777);
+	if (!string)
+		return (close(fd), open(".input_file", O_RDONLY));
 	write(fd, string, ft_strlen(string));
 	free(string);
 	close(fd);
+	return (open(".input_file", O_RDONLY));
 }

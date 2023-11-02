@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 18:03:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 04:58:12 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ char	*here_doc(char *argv)
 			write(fd, "heredoc> ", 9);
 		i = read(2, buffer, ft_strlen(argv) + 1);
 		buffer[i] = '\0';
-		if ((i <= 0 || !ft_strncmp(buffer, argv, ft_strlen(argv)))
-			&& buffer[i - 1] == '\n')
+		if ((i <= 0 || (((!ans || (ft_strlen(ans) > 0 && ans[ft_strlen(ans) - \
+			1] == '\n')) && !ft_strncmp(buffer, argv, ft_strlen(argv))) \
+			&& buffer[i - 1] == '\n')))
 			break ;
 		else
 			ans = ft_strcat(ans, ft_strdup(buffer));
@@ -73,22 +74,22 @@ int	check_otherbuilt(char *argv)
 char	*get_path(char *argv, char **first_dir)
 {
 	char	**path;
-	char	*temp;
 	int		i;
 	char	*stjoin;
 
 	i = 0;
 	if ((!ft_strcmp(argv, "cd") || !ft_strcmp(argv, "unset") \
 		|| !ft_strcmp(argv, "export") || (!access(argv, X_OK) \
-		&& check_otherbuilt(argv))) && ft_strcmp(argv, "minishell") \
-		&& ft_strcmp(argv, "minishell"))
+		&& check_otherbuilt(argv))) && ft_strcmp(argv, "minishell"))
 		return (argv);
-	temp = ft_getenv(first_dir, ft_strndup("PATH", 4));
-	path = ft_split_c(temp, ':');
+	path = ft_split_c(ft_getenv(first_dir, ft_strndup("PATH", 4)), ':');
 	while (path[i++])
 	{
-		stjoin = ft_strcat(ft_strcat(ft_strdup(path[i - 1]), \
-				ft_strdup("/")), ft_strdup(argv));
+		if (*argv != '/' && *argv != '.')
+			stjoin = ft_strcat(ft_strcat(ft_strdup(path[i - 1]), \
+					ft_strdup("/")), ft_strdup(argv));
+		else
+			stjoin = ft_strdup(argv);
 		if (!access(stjoin, X_OK))
 			free_chardstar(path);
 		if (!access(stjoin, X_OK))

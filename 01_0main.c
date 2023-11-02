@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/01 11:16:19 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 04:30:02 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,11 @@ int	start_shell(char **temp_env)
 		{
 			arg_table = create_table(&cmd, temp_env);
 			temp_table = arg_table;
-			if ((!ft_strcmp(arg_table->cmd, "cd")
-					|| check_builtin(&arg_table, &temp_env)) && arg_table->next)
+			if (arg_table->next && (!ft_strcmp(arg_table->cmd, "cd")))
 				temp_table = arg_table->next;
 			else if (!ft_strcmp(temp_table->cmd, "cd") && !temp_table->next)
 				chang_directory(temp_table->argv[1], temp_env);
-			else if (check_char_sptable(temp_table))
+			if (check_char_sptable(temp_table))
 				g_pi = pipex(&temp_table, temp_env);
 			free_all_table(arg_table);
 		}
@@ -60,23 +59,24 @@ int	start_shell(char **temp_env)
 
 int	check_char_sptable(t_argtable *arg_table)
 {
-	int	i;
+	int			i;
+	t_keyword	*key;
 
 	i = 0;
 	while (arg_table->redirection[i])
 	{
-		if (!ft_strcmp(arg_table->redirection[i], "infile")
-			&& check_spcharactor(arg_table->infile))
+		if (!check_char_sptable_util(arg_table, i))
 			return (0);
-		else if (!ft_strcmp(arg_table->redirection[i], "outfile")
-			&& check_spcharactor(arg_table->outfile))
-			return (0);
-		else if (!ft_strcmp(arg_table->redirection[i], "append")
-			&& check_spcharactor(arg_table->appendfile))
-			return (0);
-		else if (!ft_strcmp(arg_table->redirection[i], "heredoc")
-			&& check_spcharactor(arg_table->heredoc_kw))
-			return (0);
+		else if (!ft_strcmp(arg_table->redirection[i], "heredoc"))
+		{
+			key = arg_table->heredoc_kw;
+			while (key)
+			{
+				if (key->kw && check_spcharactor(key->kw))
+					return (0);
+				key = key->next;
+			}
+		}
 		i++;
 	}
 	if (arg_table->next)

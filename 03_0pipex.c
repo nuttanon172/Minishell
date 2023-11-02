@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/31 18:12:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 04:51:32 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,19 @@ int	pipex(t_argtable **arg_table, char **first_dir)
 	int			status;
 
 	temp = arg_table;
+	status = check_builtin(temp, &first_dir);
+	if (status == 1 && !(*temp)->next)
+		return (g_pi);
 	if (!ft_strcmp((*temp)->argv[0], "exit") && !(*temp)->next)
 		execve((*temp)->cmd, (*temp)->argv, first_dir);
 	pid = fork();
 	if (!pid)
 	{
-		if (!ft_strcmp((*temp)->argv[0], "minishell")
-			|| !ft_strcmp((*temp)->argv[0], "./minishell"))
+		if (!ft_strcmp((*temp)->argv[0], "minishell"))
 		{
 			pipex_util(&temp, first_dir);
 			execve((*temp)->cmd, (*temp)->argv, first_dir);
+			exit(g_pi);
 		}
 		else
 			exit(execve_command(temp, first_dir));
@@ -80,12 +83,21 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 {
 	defualt_input(temp, pipeid[1]);
-	if (ft_strcmp((*temp)->argv[0], "minishell")
-		&& ft_strcmp((*temp)->argv[0], "./minishell"))
+	if (ft_strlen((*temp)->argv[0]) >= 9)
+	{
+		if (ft_strcmp((*temp)->argv[0], "minishell"))
+		{
+			if (ft_strlen((*temp)->argv[0]) < 10 || ft_strcmp((*temp)->argv[0] \
+				+ ft_strlen((*temp)->argv[0]) - 10, "/minishell"))
+				dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
+		}
+	}
+	else
 		dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
 	if (!(*temp)->argv[1])
 		isdir((*temp)->cmd);
-	if (!check_builtin(temp, first_dir))
-		execve((*temp)->cmd, (*temp)->argv, *first_dir);
+	execve((*temp)->cmd, (*temp)->argv, *first_dir);
+	if (check_builtin(temp, first_dir))
+		return (close(pipeid[1]), exit(g_pi), 1);
 	return (close(pipeid[1]), exit(127), 1);
 }

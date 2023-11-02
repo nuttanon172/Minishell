@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/25 18:50:06 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/10/25 22:10:07 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 03:16:36 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	printerror(char *cmd, char *command)
 	write(2, ": '", 3);
 	write(2, cmd, ft_strlen(cmd));
 	write(2, "': not a valid identifier\n", 26);
+	g_pi = 1;
 }
 
 int	check_ex_unset(char *argv, char *cmd)

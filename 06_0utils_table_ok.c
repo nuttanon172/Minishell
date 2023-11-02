@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:15:04 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/20 04:53:30 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 00:05:27 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ t_argtable	*create_table(char ***cmda, char **first_dir)
 
 void	free_argtable(t_argtable *temp)
 {
+	t_keyword	*key;
+
 	free(temp->cmd);
 	if (temp->appendfile)
 		free_null(temp->appendfile);
@@ -52,8 +54,12 @@ void	free_argtable(t_argtable *temp)
 		free_null(temp->infile);
 	if (temp->outfile)
 		free_null(temp->outfile);
-	if (temp->heredoc_kw)
-		free_null(temp->heredoc_kw);
+	while (temp->heredoc_kw)
+	{
+		key = temp->heredoc_kw;
+		temp->heredoc_kw = temp->heredoc_kw->next;
+		free(key);
+	}
 }
 
 void	free_all_table(t_argtable *arg_table)
@@ -82,6 +88,8 @@ void	free_all_table(t_argtable *arg_table)
 void	create_table_redirect(t_argtable **arg_table,
 			char **cmd, int *i, int *k)
 {
+	t_keyword	**key;
+
 	(*arg_table)->redirection[(*k)++] = replace_q(return_lebel(cmd[*i]));
 	if (!ft_strcmp(cmd[*i], ">") && cmd[*i + 1])
 		(*arg_table)->outfile = replace_q(ft_strdup(cmd[*i + 1]));
@@ -90,7 +98,14 @@ void	create_table_redirect(t_argtable **arg_table,
 	else if (!ft_strcmp(cmd[*i], "<") && cmd[*i + 1])
 		(*arg_table)->infile = replace_q(ft_strdup(cmd[*i + 1]));
 	else if (!ft_strcmp(cmd[*i], "<<") && cmd[*i + 1])
-		(*arg_table)->heredoc_kw = replace_q(ft_strdup(cmd[*i + 1]));
+	{
+		key = &(*arg_table)->heredoc_kw;
+		while ((*key))
+			key = &((*key)->next);
+		(*key) = (t_keyword *)malloc(sizeof (t_keyword));
+		(*key)->next = NULL;
+		(*key)->kw = replace_q(ft_strdup(cmd[*i + 1]));
+	}
 	if (cmd[++(*i)])
 		(*i)++;
 }

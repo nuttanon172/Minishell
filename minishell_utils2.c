@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:24:59 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 18:00:02 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 00:04:54 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,14 @@ void	free_chardstar(char **path)
 
 void	free_re_arg(t_argtable **temp)
 {
+	t_keyword	*kwtemp;
+
 	free_chardstar((*temp)->redirection);
 	free_chardstar((*temp)->argv);
+	while ((*temp)->heredoc_kw)
+	{
+		kwtemp = ((*temp)->heredoc_kw);
+		(*temp)->heredoc_kw = (*temp)->heredoc_kw->next;
+		free(kwtemp);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/01 18:30:15 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 00:19:31 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ typedef struct s_env
 	struct s_env		*next;
 }	t_env;
 
+typedef struct s_key_heredoc
+{
+	char					*kw;
+	struct s_key_heredoc	*next;
+}	t_keyword;
+
 typedef struct s_argtable
 {
 	char				*cmd;
@@ -50,7 +56,7 @@ typedef struct s_argtable
 	char				*outfile;
 	char				*infile;
 	char				*appendfile;
-	char				*heredoc_kw;
+	t_keyword			*heredoc_kw;
 	struct s_argtable	*next;
 }	t_argtable;
 
@@ -110,7 +116,7 @@ void		check_pipe_and_return_line(char **line);
 void		set_int_zero(t_table *s);
 void		free_null(char *str);
 void		sub_exec_redirect_loop(t_argtable **temp, int i, int pipeid);
-void		write_input_dummy(char *string);
+int			write_input_dummy(char *string);
 int			count_command_arg(char **cmd);
 int			count_redirection(char **cmd);
 int			check_char_sptable(t_argtable *arg_table);
@@ -153,5 +159,7 @@ int			check_ex_unset(char *argv, char *cmd);
 void		printerror(char *cmd, char *command);
 int			child_process(t_argtable **temp, int pipeid[2], char ***first_dir);
 void		sub_util(void);
+int			count_heredoc(char **cmd);
+int			check_char_sptable_util(t_argtable *arg_table, int i);
 
 #endif

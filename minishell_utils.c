@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:45:33 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:43:02 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 05:13:25 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ void	find_home_old(char **previous, char **home, char **temp)
 	while (*temp)
 	{
 		if (!ft_strncmp(*temp, "OLDPWD=", 7))
-		{
 			(*previous) = *temp + 7;
-			break ;
-		}
 		if (!ft_strncmp(*temp, "HOME=", 5))
 			(*home) = *temp + 5;
 		temp++;

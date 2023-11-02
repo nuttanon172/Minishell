@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:26:29 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/01 18:29:53 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 00:07:26 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,20 @@ char	*replace_q(char *cmd)
 	}
 	ans[j] = '\0';
 	return (free(cmd), ans);
+}
+
+int	count_heredoc(char **cmd)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (cmd[i])
+	{
+		if (!ft_strcmp(cmd[i], "<<"))
+			count++;
+		i++;
+	}
+	return (count);
 }
