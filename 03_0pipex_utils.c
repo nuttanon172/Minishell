@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 22:25:05 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 04:15:34 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:02:59 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_builtin(t_argtable **temp, char ***envp)
 	if (!ft_strcmp((*temp)->cmd, "unset"))
 		ft_unset(*envp, (*temp)->argv);
 	else if (!ft_strcmp((*temp)->cmd, "export"))
-		*envp = ft_export(*envp, (*temp)->argv);
+		ft_export(envp, (*temp)->argv);
 	else
 		return (0);
 	return (1);

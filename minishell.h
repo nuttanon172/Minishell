@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/02 00:19:31 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:00:29 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int			openfile(char *fname, char mode);
 void		initialize_data_table(t_argtable **temp, char **cmd);
 char		*ft_strdup(char *src);
 char		*return_lebel(char *c);
-int			pipex(t_argtable **arg_table, char	**first_dir);
+int			pipex(t_argtable **arg_table, char	***first_dir);
 int			check_heredoc(char **cmd);
 char		*get_command(char *str);
 char		*ft_itoa(int nbr);
@@ -152,7 +152,7 @@ int			check_in_env(char **envp, char *check);
 void		change_level(char **temp_env);
 void		ft_unset(char **envp, char **argv);
 size_t		ft_arglen(char *argv);
-char		**ft_export(char **envp, char **argv);
+void		ft_export(char ***envp, char **argv);
 int			check_builtin(t_argtable **temp, char ***envp);
 void		isdir(const char *fileName);
 int			check_ex_unset(char *argv, char *cmd);

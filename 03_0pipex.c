@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/02 04:51:32 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:01:02 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,29 @@ void	pipex_util(t_argtable ***temp2, char **first_dir)
 	}
 }
 
-int	pipex(t_argtable **arg_table, char **first_dir)
+int	pipex(t_argtable **arg_table, char ***first_dir)
 {
 	t_argtable	**temp;
 	pid_t		pid;
 	int			status;
 
 	temp = arg_table;
-	status = check_builtin(temp, &first_dir);
+	status = check_builtin(arg_table, first_dir);
 	if (status == 1 && !(*temp)->next)
 		return (g_pi);
 	if (!ft_strcmp((*temp)->argv[0], "exit") && !(*temp)->next)
-		execve((*temp)->cmd, (*temp)->argv, first_dir);
+		execve((*temp)->cmd, (*temp)->argv, *first_dir);
 	pid = fork();
 	if (!pid)
 	{
 		if (!ft_strcmp((*temp)->argv[0], "minishell"))
 		{
-			pipex_util(&temp, first_dir);
-			execve((*temp)->cmd, (*temp)->argv, first_dir);
+			pipex_util(&temp, *first_dir);
+			execve((*temp)->cmd, (*temp)->argv, *first_dir);
 			exit(g_pi);
 		}
 		else
-			exit(execve_command(temp, first_dir));
+			exit(execve_command(temp, *first_dir));
 	}
 	waitpid(pid, &status, 0);
 	return (WEXITSTATUS(status));

@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 12:25:53 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:27:03 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	start_shell(char **temp_env)
 			else if (!ft_strcmp(temp_table->cmd, "cd") && !temp_table->next)
 				chang_directory(temp_table->argv[1], temp_env);
 			if (check_char_sptable(temp_table))
-				g_pi = pipex(&temp_table, temp_env);
+				g_pi = pipex(&temp_table, &temp_env);
 			free_all_table(arg_table);
 		}
 		free_s(NULL, cmd);
