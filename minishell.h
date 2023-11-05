@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/02 23:05:34 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/05 23:28:44 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,11 @@ void		free_chardstar(char **path);
 char		*get_path(char *argv, char **first_dir);
 int			ft_strcmp(char *src, char *dst);
 char		*here_doc(char *argv);
-int			openfile(char *fname, char mode);
 void		initialize_data_table(t_argtable **temp, char **cmd);
 char		*ft_strdup(char *src);
 char		*return_lebel(char *c);
 int			pipex(t_argtable **arg_table, char	***first_dir);
 int			check_heredoc(char **cmd);
-char		*get_command(char *str);
 char		*ft_itoa(int nbr);
 void		create_table_redirect(t_argtable **arg_table, \
 				char **cmd, int *i, int *k);
@@ -109,7 +107,7 @@ void		add_space(int *j, int *i, char **ans, char **cmd);
 void		is_in_q(char c, bool *is_indq, bool *is_insq);
 void		sig_handler(int sig_number);
 char		*ft_strcat(char *src, char *dst);
-char		**check_quote(int *signal, char **line, int *i, char what_quote);
+char		**check_quote(int *signal, char **line, size_t *i, char what_quote);
 void		sub_replace_veriable(char **cmd, int **i, int pi, char **env);
 void		check_pipe_and_return_line(char **line);
 void		set_int_zero(t_table *s);

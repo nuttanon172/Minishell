@@ -14,9 +14,7 @@ RM = rm -rf
 AR = ar rc
 
 SRCS  = 01_0main.c \
-		01_0main_utils.c \
 		01_1main.c \
-		01_1main_utils.c \
 		01_2main.c \
 		01_2main_utils.c \
 		01_3main.c \

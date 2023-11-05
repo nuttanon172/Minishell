@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/02 18:01:02 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/05 23:18:06 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	pipex(t_argtable **arg_table, char ***first_dir)
 	int			status;
 
 	temp = arg_table;
-	status = check_builtin(arg_table, first_dir);
-	if (status == 1 && !(*temp)->next)
+	if (!(*temp)->next && check_builtin(arg_table, first_dir) && !(*temp)->next)
 		return (g_pi);
 	if (!ft_strcmp((*temp)->argv[0], "exit") && !(*temp)->next)
 		execve((*temp)->cmd, (*temp)->argv, *first_dir);
@@ -96,6 +95,11 @@ int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 		dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
 	if (!(*temp)->argv[1])
 		isdir((*temp)->cmd);
+	//if (!(*temp)->cmd)
+	//{
+	//	printf("%s: No such file or directory\n", (*temp)->cmd_name);
+	//	return (close(pipeid[1]), exit(127), 1);
+	//}
 	execve((*temp)->cmd, (*temp)->argv, *first_dir);
 	if (check_builtin(temp, first_dir))
 		return (close(pipeid[1]), exit(g_pi), 1);

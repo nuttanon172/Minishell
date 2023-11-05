@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 04:58:12 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:52:53 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,20 @@ char	*here_doc(char *argv)
 	return (free(buffer), close(fd), ans);
 }
 
-int	openfile(char *fname, char mode)
-{
-	int	fd;
-
-	if (mode == 'I' && access(fname, R_OK))
-	{
-		perror(fname);
-		exit(1);
-	}
-	else if (mode == 'I' )
-		return (open(fname, O_RDONLY, O_NONBLOCK | O_SYNC | O_EXCL));
-	else
-	{
-		fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC,
-				0000400 | 0000200 | 0000040 | 0000020 | 0000004 | O_NONBLOCK);
-		if (fd < 0)
-		{
-			perror(fname);
-			return (-1);
-		}
-	}
-	return (fd);
-}
-
 int	check_otherbuilt(char *argv)
 {
 	return (ft_strcmp(argv, "echo")
 		&& ft_strcmp(argv, "env") && ft_strcmp(argv, "pwd")
 		&& ft_strcmp(argv, "exit"));
+}
+
+void	get_path_util(char *argv)
+{
+	if (ft_strcmp(argv, "cd"))
+	{
+		write(2, argv, ft_strlen(argv));
+		write(2, ": Command not found\n", 20);
+	}
 }
 
 char	*get_path(char *argv, char **first_dir)
@@ -83,6 +68,8 @@ char	*get_path(char *argv, char **first_dir)
 		&& check_otherbuilt(argv))) && ft_strcmp(argv, "minishell"))
 		return (argv);
 	path = ft_split_c(ft_getenv(first_dir, ft_strndup("PATH", 4)), ':');
+	if (!path)
+		return (NULL);
 	while (path[i++])
 	{
 		if (*argv != '/' && *argv != '.')
@@ -91,33 +78,21 @@ char	*get_path(char *argv, char **first_dir)
 		else
 			stjoin = ft_strdup(argv);
 		if (!access(stjoin, X_OK))
-			free_chardstar(path);
-		if (!access(stjoin, X_OK))
-			return (free(argv), stjoin);
+			return (free_chardstar(path), free(argv), stjoin);
 		free(stjoin);
 	}
 	return (free_chardstar(path), get_path_util(argv), argv);
 }
 
-char	*get_command(char *str)
+void	free_s(char *command, char **check)
 {
-	int		i;
-	int		n;
-	char	*ans;
-
-	ans = NULL;
-	n = ft_strlen(str) - 1;
-	i = ft_strlen(str) - 1;
-	while (i >= 0)
-	{
-		if (str[i] == '/')
-			break ;
-		i--;
-	}
-	if (i >= 0)
-		ans = ft_strndup(str + i, n - i);
-	else
-		ans = ft_strdup(str);
-	free(str);
-	return (ans);
+	if (command)
+		free(command);
+	if (check)
+		free_chardstar(check);
+	wait(NULL);
+	if (!access(".here_doc", F_OK))
+		unlink(".here_doc");
+	if (!access(".input_file", F_OK))
+		unlink(".input_file");
 }

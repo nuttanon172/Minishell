@@ -6,7 +6,7 @@
 /*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/25 18:11:09 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 18:29:44 by vchulkai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 		k++;
 		(*i)[1]++;
 	}
-	if (ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k)))
-		t = ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k));
-	else
-		t = ft_strndup(cmd[(*i)[0]] + (*i)[1] - k - 1, k + 1);
+	t = ft_getenv(env, ft_strndup(cmd[(*i)[0]] + (*i)[1] - k, k));
 	if (cmd[(*i)[0]][(*i)[1]] != '?')
 		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], \
 			(*i)[1] - k - 1), t), ft_strdup(cmd[(*i)[0]] + (*i)[1]));

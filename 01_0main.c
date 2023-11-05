@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 18:27:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/05 22:47:29 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	start_shell(char **temp_env)
 
 int	check_char_sptable(t_argtable *arg_table)
 {
-	int			i;
+	size_t		i;
 	t_keyword	*key;
 
 	i = 0;
