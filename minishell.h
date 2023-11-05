@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/02 18:00:29 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/02 23:05:34 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void		free_re_arg(t_argtable **temp);
 int			create_table_pipe_or(t_argtable **arg_table, int *j, \
 				int *k, char **cmd);
 int			start_shell(char **temp_env);
-void		write_env(char **envp, char *first_dir);
 void		add_space(int *j, int *i, char **ans, char **cmd);
 void		is_in_q(char c, bool *is_indq, bool *is_insq);
 void		sig_handler(int sig_number);
@@ -124,7 +123,6 @@ int			check_spcharactor(char *str);
 void		chang_directory(char *path, char **env);
 int			count_newline(char *src);
 int			count_to_newline(char *src);
-char		**ft_split_to_env(char *string, char ch);
 void		set_zero_dchar(char **ans, int k);
 void		*ft_strndup_env(char **dst, char *src, int n);
 char		*readline(const char *prompt);

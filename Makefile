@@ -2,8 +2,8 @@ NAME = minishell
 
 CC = cc
 
-LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
-#LIB_RL	=	-lreadline -L/opt/homebrew/opt/readline/lib/ -I/opt/homebrew/opt/readline/include/readline/
+#LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
+LIB_RL	=	-lreadline -L/opt/homebrew/opt/readline/lib/ -I/opt/homebrew/opt/readline/include/readline/
 #LIB_RL	=	-lreadline
 
 CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
@@ -31,7 +31,6 @@ SRCS  = 01_0main.c \
 		05_utils_string.c \
 		06_0utils_table_ok.c \
 		06_1utils_table_ok.c \
-		07_0utils_env_split_ok.c \
 		07_1utils_env_split_ok.c \
 		07_2utils_env_split_ok.c \
 		08_unset.c \
