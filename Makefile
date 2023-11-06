@@ -4,7 +4,7 @@ CC = cc
 
 LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
 
-CFLAGS	=	-Wall -Wextra -Werror -g
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM = rm -rf
 
@@ -34,17 +34,15 @@ SRCS  = 01_0main.c \
 		11_check_ex_unset.c \
 		shelllvl.c \
 		minishell_utils.c \
-		minishell_utils2.c
+		minishell_utils2.c \
+		builtin.c
 
 OBJS = $(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
 	@$(RM) bin
 	@mkdir bin
-	@make -C echo
 	@make -C env
-	@make -C exit
-	@make -C pwd
 	@$(CC) $(CFLAGS) $(OBJS) $(LIB_RL) -o $(NAME)
 	@echo "Nanoshell starts"
 
@@ -53,17 +51,11 @@ all: $(NAME)
 
 clean:
 	@$(RM) $(OBJS)
-	@make clean -C echo
 	@make clean -C env
-	@make clean -C exit
-	@make clean -C pwd
 	@echo "cleaned!"
 
 fclean: clean
-	@make fclean -C echo
 	@make fclean -C env
-	@make fclean -C exit
-	@make fclean -C pwd
 	@$(RM) bin
 	@$(RM) $(NAME)
 	@echo "no clue now :|"

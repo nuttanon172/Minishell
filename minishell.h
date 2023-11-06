@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/06 15:44:47 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:21:35 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,8 +148,11 @@ int			check_in_env(char **envp, char *check);
 void		change_level(char **temp_env);
 void		ft_unset(char **envp, char **argv);
 size_t		ft_arglen(char *argv);
+int			ft_echo(char ***argv);
 void		ft_export(char ***envp, char **argv);
-int			check_builtin(t_argtable **temp, char ***envp);
+int			ft_pwd(void);
+int			ft_exit(char **av);
+int			check_builtin(t_argtable **temp, char ***envp, int i);
 void		isdir(const char *fileName);
 int			check_ex_unset(char *argv, char *cmd);
 void		printerror(char *cmd, char *command);
@@ -157,5 +160,6 @@ int			child_process(t_argtable **temp, int pipeid[2], char ***first_dir);
 void		sub_util(void);
 int			count_heredoc(char **cmd);
 int			check_char_sptable_util(t_argtable *arg_table, int i);
+int			is_bin(char *cmd);
 
 #endif

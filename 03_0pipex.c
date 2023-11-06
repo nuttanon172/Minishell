@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/06 15:41:03 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:22:01 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	pipex(t_argtable **arg_table, char ***first_dir)
 	int			status;
 
 	temp = arg_table;
-	if (!(*temp)->next && check_builtin(arg_table, first_dir) && !(*temp)->next)
+	if (!(*temp)->next && check_builtin(arg_table, first_dir, 0))
 		return (g_pi);
 	if (!ft_strcmp((*temp)->argv[0], "exit") && !(*temp)->next)
-		execve((*temp)->cmd, (*temp)->argv, *first_dir);
+		ft_exit((*temp)->argv);
 	pid = fork();
 	if (!pid)
 	{
@@ -79,7 +79,7 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 		return (WEXITSTATUS(status));
 }
 
-int	is_bin(char *cmd, int pipeid[2])
+int	is_bin(char *cmd)
 {
 	if (!ft_strcmp(cmd, "echo"))
 		return (1);
@@ -91,13 +91,10 @@ int	is_bin(char *cmd, int pipeid[2])
 		return (1);
 	if (!ft_strcmp(cmd, "exit"))
 		return (1);
+	if (!ft_strcmp(cmd, "cd"))
+		return (1);
 	if (!ft_strcmp(cmd, "env"))
-	{
-		printf("env: Is a directory\n");
-		close(pipeid[1]);
-		close(pipeid[0]);
-		exit(126);
-	}
+		return (0);
 	return (0);
 }
 
@@ -115,10 +112,13 @@ int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 	}
 	else
 		dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
-	if (!(*temp)->argv[1])
+	if (!(*temp)->argv[1] && !is_bin((*temp)->cmd))
 		isdir((*temp)->cmd);
-	execve((*temp)->cmd, (*temp)->argv, *first_dir);
-	if (check_builtin(temp, first_dir))
-		return (close(pipeid[1]), exit(g_pi), 1);
-	return (close(pipeid[1]), exit(127), 1);
+	if (!check_builtin(temp, first_dir, 1))
+	{
+		execve((*temp)->cmd, (*temp)->argv, *first_dir);
+		return (close(pipeid[1]), exit(127), 1);
+	}
+	else
+		return (close(pipeid[1]), exit(0), 1);
 }

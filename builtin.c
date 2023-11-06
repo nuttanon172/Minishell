@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 19:58:24 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/10/31 17:15:08 by ntairatt         ###   ########.fr       */
+/*   Created: 2023/11/06 13:07:21 by ntairatt          #+#    #+#             */
+/*   Updated: 2023/11/06 18:10:16 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "minishell.h"
 
 int	is_flagn(const char *s)
 {
@@ -29,22 +29,48 @@ int	is_flagn(const char *s)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int	ft_echo(char ***argv)
 {
 	int	i;
 
-	if (argc == 1)
-		return (0);
 	i = 1;
-	if (!is_flagn(argv[i]))
-		i++;
-	while (argv[i])
+	if (!(*argv)[i])
 	{
-		printf("%s", argv[i++]);
-		if (argv[i])
+		printf("\n");
+		return (0);
+	}
+	if (!is_flagn((*argv)[i]))
+		i++;
+	while ((*argv)[i])
+	{
+		printf("%s", (*argv)[i]);
+		i++;
+		if ((*argv)[i])
 			printf(" ");
 	}
-	if (is_flagn(argv[1]))
+	if (is_flagn((*argv)[1]))
 		printf("\n");
 	return (0);
+}
+
+int	ft_exit(char **av)
+{
+	int	exit_code;
+
+	if (!av[1])
+		exit_code = 0;
+	else
+		exit_code = ft_atoi(av[1]);
+	return (exit(exit_code), exit_code);
+}
+
+int	ft_pwd(void)
+{
+	char	*pwd;
+
+	pwd = getcwd(NULL, 0);
+	if (!pwd)
+		return (perror("pwd_error :"), errno);
+	printf("%s\n", pwd);
+	return (free(pwd), 0);
 }

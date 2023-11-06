@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 22:25:05 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 18:02:59 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:20:59 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	dup2_and_close(int closed, int new, int old)
 	close(closed);
 }
 
-int	check_builtin(t_argtable **temp, char ***envp)
+int	check_builtin(t_argtable **temp, char ***envp, int i)
 {
 	if (!(*temp)->cmd)
 		return (1);
@@ -65,6 +65,15 @@ int	check_builtin(t_argtable **temp, char ***envp)
 		ft_unset(*envp, (*temp)->argv);
 	else if (!ft_strcmp((*temp)->cmd, "export"))
 		ft_export(envp, (*temp)->argv);
+	else if (!ft_strcmp((*temp)->cmd, "echo") && i)
+		return (ft_echo(&(*temp)->argv));
+	else if (!ft_strcmp((*temp)->cmd, "pwd") && i)
+		return (ft_pwd());
+	else if (!ft_strcmp((*temp)->cmd, "exit"))
+	{
+		g_pi = ft_exit((*temp)->argv);
+		return (0);
+	}
 	else
 		return (0);
 	return (1);

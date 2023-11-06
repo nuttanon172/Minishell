@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 15:36:11 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:32:55 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	sub_replace_veriable(char **cmd, int **i, int pi, char **env)
 		cmd[(*i)[0]] = ft_strcat(ft_strcat(ft_strndup(cmd[(*i)[0]], (*i)[1]
 						- 1), ft_strdup(ft_itoa(pi))), ft_strndup(cmd[(*i)[0]]
 					+ (*i)[1] + 1, ft_strlen(cmd[(*i)[0]] + (*i)[1] + 1)));
-	(*i)[1] = 0;
+	if (t)
+		(*i)[1] = 0;
 }
 
 int	ft_counttochar(char *src, char ch)
@@ -86,7 +87,7 @@ char	*ft_add_ifsp_nosp(char *cmd)
 
 	is_indq = false;
 	is_insq = false;
-	ans = (char *)malloc(ft_strlen(cmd) + count_special_character(cmd) * 2 + 3);
+	ans = (char *)malloc(ft_strlen(cmd) + count_special_character(cmd) * 2 + 9);
 	if (!ans)
 		return (NULL);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 15:44:28 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 18:32:33 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ char	*here_doc(char *argv)
 
 	i = 0;
 	fd = dup(STDERR_FILENO);
-	buffer = NULL;
 	buffer = (char *)malloc(sizeof(char) * (ft_strlen(argv) + 2));
+	if (!buffer)
+		return (NULL);
 	ans = NULL;
 	while (1)
 	{
@@ -49,7 +50,7 @@ int	check_otherbuilt(char *argv)
 
 void	get_path_util(char *argv, char **path)
 {
-	if (ft_strcmp(argv, "cd"))
+	if (!is_bin(argv) && access(argv, F_OK))
 	{
 		write(2, argv, ft_strlen(argv));
 		if (!path)
@@ -67,8 +68,7 @@ char	*get_path(char *argv, char **first_dir)
 	char	*stjoin;
 
 	i = 0;
-	if ((!ft_strcmp(argv, "cd") || !ft_strcmp(argv, "unset") \
-		|| !ft_strcmp(argv, "export") || (!access(argv, X_OK) \
+	if ((is_bin(argv) || (!access(argv, X_OK) \
 		&& check_otherbuilt(argv))) && ft_strcmp(argv, "minishell"))
 		return (argv);
 	path = ft_split_c(ft_getenv(first_dir, ft_strndup("PATH", 4)), ':');
