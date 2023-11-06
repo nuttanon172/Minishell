@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:15:04 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 11:20:20 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:24:01 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_argtable	*create_table(char ***cmda, char **first_dir)
 		{
 			if (!s.temp->cmd)
 				s.temp->cmd = get_path(rep_q(s.cmd[s.i]), first_dir);
-			s.temp->argv[s.j] = rep_q(s.cmd[s.i++]);
+			s.temp->argv[s.j++] = rep_q(s.cmd[s.i++]);
 		}
 	}
 	return (s.arg_table);
