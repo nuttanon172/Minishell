@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_3main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:39:03 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 18:29:44 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/06 12:43:49 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ char	*ft_add_ifsp_nosp(char *cmd)
 
 	is_indq = false;
 	is_insq = false;
-	ans = (char *)malloc(ft_strlen(cmd) + count_special_character(cmd) * 2 + 1);
+
+	ans = (char *)malloc(ft_strlen(cmd) + count_special_character(cmd) * 2 + 3);
 	if (!ans)
 		return (NULL);
 	i = 0;

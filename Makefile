@@ -2,12 +2,9 @@ NAME = minishell
 
 CC = cc
 
-#LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
-LIB_RL	=	-lreadline -L/opt/homebrew/opt/readline/lib/ -I/opt/homebrew/opt/readline/include/readline/
-#LIB_RL	=	-lreadline
+LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
 
-CFLAGS	=	-Wall -Wextra -Werror -g -fsanitize=address
-# CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM = rm -rf
 
