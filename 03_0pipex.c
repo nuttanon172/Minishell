@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/05 23:18:06 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 11:20:04 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,35 @@ int	execve_command(t_argtable **arg_table, char **first_dir)
 		return (WEXITSTATUS(status));
 }
 
+int	is_bin(char *cmd, int pipeid[2])
+{
+	if (!ft_strcmp(cmd, "echo"))
+		return (1);
+	if (!ft_strcmp(cmd, "pwd"))
+		return (1);
+	if (!ft_strcmp(cmd, "unset"))
+		return (1);
+	if (!ft_strcmp(cmd, "export"))
+		return (1);
+	if (!ft_strcmp(cmd, "exit"))
+		return (1);
+	if (!ft_strcmp(cmd, "env"))
+	{
+		printf("env: Is a directory\n");
+		close(pipeid[1]);
+		close(pipeid[0]);
+		exit(126);
+	}
+	return (0);
+}
+
 int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 {
+	if (!(*temp)->cmd && !is_bin((*temp)->argv[0], pipeid))
+	{
+		printf("%s: No such file or directory\n", (*temp)->argv[0]);
+		return (close(pipeid[1]), close(pipeid[0]), exit(127), 1);
+	}
 	defualt_input(temp, pipeid[1]);
 	if (ft_strlen((*temp)->argv[0]) >= 9)
 	{
@@ -95,11 +122,6 @@ int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 		dup2_and_close(pipeid[0], pipeid[1], STDOUT_FILENO);
 	if (!(*temp)->argv[1])
 		isdir((*temp)->cmd);
-	//if (!(*temp)->cmd)
-	//{
-	//	printf("%s: No such file or directory\n", (*temp)->cmd_name);
-	//	return (close(pipeid[1]), exit(127), 1);
-	//}
 	execve((*temp)->cmd, (*temp)->argv, *first_dir);
 	if (check_builtin(temp, first_dir))
 		return (close(pipeid[1]), exit(g_pi), 1);

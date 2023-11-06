@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/05 21:52:53 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:56:17 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*get_path(char *argv, char **first_dir)
 		return (argv);
 	path = ft_split_c(ft_getenv(first_dir, ft_strndup("PATH", 4)), ':');
 	if (!path)
-		return (NULL);
+		return (free_null(argv), NULL);
 	while (path[i++])
 	{
 		if (*argv != '/' && *argv != '.')

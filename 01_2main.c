@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_2main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:27:46 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 12:16:08 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 09:34:19 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	init_util(t_argtable **temp, char **cmd)
 		(*temp)->redirection[i] = NULL;
 	(*temp)->next = NULL;
 	(*temp)->cmd = NULL;
-	(*temp)->heredoc_kw = (t_keyword *)malloc(sizeof(t_keyword));
 	(*temp)->heredoc_kw = NULL;
 	(*temp)->infile = NULL;
 	(*temp)->outfile = NULL;

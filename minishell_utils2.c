@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:24:59 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 00:04:54 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/06 10:51:46 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	free_chardstar(char **path)
 	int	i;
 
 	i = 0;
+	if (!path)
+		return ;
 	while (path[i])
 	{
 		free(path[i]);
