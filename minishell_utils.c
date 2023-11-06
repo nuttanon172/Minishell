@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vchulkai <vchulkai@42student.fr>           +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 17:45:33 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/02 05:13:25 by vchulkai         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:46:43 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,22 @@ void	chang_directory(char *path, char **env)
 		chdir(previous);
 	else if (!access(path, F_OK))
 		chdir(path);
+	while (*temp)
+	{
+		if (!ft_strncmp(*temp, "OLDPWD=", 7))
+			*temp = ft_strcat(ft_strdup("OLDPWD="), ft_strdup(str));
+		temp++;
+	}
+	free(previous);
+	free(home);
 	free(*temp);
-	*temp = ft_strcat(ft_strdup("OLDPWD="), ft_strdup(str));
 }
 
 void	find_home_old(char **previous, char **home, char **temp)
 {
-	while (*temp)
-	{
-		if (!ft_strncmp(*temp, "OLDPWD=", 7))
-			(*previous) = *temp + 7;
-		if (!ft_strncmp(*temp, "HOME=", 5))
-			(*home) = *temp + 5;
-		temp++;
-	}
+	char	**chars;
+
+	chars = temp;
+	*previous = ft_getenv(temp, ft_strdup("OLDPWD"));
+	*home = ft_getenv(temp, ft_strdup("HOME"));
 }

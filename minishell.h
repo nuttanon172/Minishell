@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/13 16:37:53 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/05 23:28:44 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:44:47 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void		write_to_file_pfd(int fd, int writefile);
 void		defualt_input(t_argtable **temp, int pipeid);
 void		dup2_and_close(int closed, int new, int old);
 int			sub_exec_redirect(t_argtable **temp, int pipeid, char **first_dir);
-void		get_path_util(char *argv);
+void		get_path_util(char *argv, char **path);
 void		check_inq(char ch, bool *is_indq, bool *is_insq);
 void		free_s(char *command, char **check);
 void		find_home_old(char **previous, char **home, char **temp);

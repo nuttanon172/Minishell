@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_1main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:29:08 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 10:56:17 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:44:28 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,16 @@ int	check_otherbuilt(char *argv)
 		&& ft_strcmp(argv, "exit"));
 }
 
-void	get_path_util(char *argv)
+void	get_path_util(char *argv, char **path)
 {
 	if (ft_strcmp(argv, "cd"))
 	{
 		write(2, argv, ft_strlen(argv));
-		write(2, ": Command not found\n", 20);
+		if (!path)
+			write(2, ": No such file or directory\n", 29);
+		else
+			write(2, ": command not found\n", 21);
+		g_pi = 127;
 	}
 }
 
@@ -69,7 +73,7 @@ char	*get_path(char *argv, char **first_dir)
 		return (argv);
 	path = ft_split_c(ft_getenv(first_dir, ft_strndup("PATH", 4)), ':');
 	if (!path)
-		return (free_null(argv), NULL);
+		return (get_path_util(argv, path), argv);
 	while (path[i++])
 	{
 		if (*argv != '/' && *argv != '.')
@@ -81,7 +85,7 @@ char	*get_path(char *argv, char **first_dir)
 			return (free_chardstar(path), free(argv), stjoin);
 		free(stjoin);
 	}
-	return (free_chardstar(path), get_path_util(argv), argv);
+	return (free_chardstar(path), get_path_util(argv, path), argv);
 }
 
 void	free_s(char *command, char **check)

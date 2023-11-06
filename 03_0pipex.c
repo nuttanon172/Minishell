@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   03_0pipex.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 16:07:48 by vchulkai          #+#    #+#             */
-/*   Updated: 2023/11/06 11:20:04 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/06 15:41:03 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,6 @@ int	is_bin(char *cmd, int pipeid[2])
 
 int	child_process(t_argtable **temp, int pipeid[2], char ***first_dir)
 {
-	if (!(*temp)->cmd && !is_bin((*temp)->argv[0], pipeid))
-	{
-		printf("%s: No such file or directory\n", (*temp)->argv[0]);
-		return (close(pipeid[1]), close(pipeid[0]), exit(127), 1);
-	}
 	defualt_input(temp, pipeid[1]);
 	if (ft_strlen((*temp)->argv[0]) >= 9)
 	{
