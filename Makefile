@@ -2,7 +2,8 @@ NAME = minishell
 
 CC = cc
 
-LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
+#LIB_RL	=	-lreadline -L/usr/local/opt/readline/lib/ -I/usr/opt/readline/include
+LIB_RL	=	-lreadline -L/opt/homebrew/opt/readline/lib/ -I/opt/homebrew/opt/readline/include/readline/
 
 CFLAGS	=	-Wall -Wextra -Werror
 

@@ -43,6 +43,20 @@ void	get_from_readline_util(char	**line, int *signal)
 	}
 }
 
+char	*get_promt(char *str)
+{
+	char	*pwd;
+	char	*promt;
+	char	*status;
+
+	pwd = ft_strcat(ft_strdup("\033[38;2;241;250;192mCurrent directory: "), \
+		ft_strdup(str));
+	status = ft_strcat(ft_itoa(g_pi), ft_strdup("$ "));
+	promt = ft_strcat(ft_strdup("\n\033[38;2;44;221;13mminishell "), status);
+	promt = ft_strcat(pwd, promt);
+	return (promt);
+}
+
 char	*get_from_readline(void)
 {
 	char	*line;
@@ -53,9 +67,7 @@ char	*get_from_readline(void)
 	signal = 0;
 	dir = NULL;
 	getcwd(str, sizeof(str));
-	dir = ft_strcat(ft_strcat(
-				ft_strdup("\033[0;34mCurrent directory: "), ft_strdup(str)),
-			ft_strdup("\nWelcome to my world my rule $ "));
+	dir = get_promt(str);
 	line = readline(dir);
 	if (!line)
 	{
@@ -87,32 +99,4 @@ void	check_pipe_and_return_line(char **line)
 		else
 			(*line) = ft_strcat((*line), readline("pipe>"));
 	}
-}
-
-char	*ft_strcat(char *src, char *dst)
-{
-	char	*ans;
-	size_t	count;
-	size_t	i;
-	size_t	j;
-
-	if (!dst && !src)
-		return (NULL);
-	if (!dst || !*dst)
-		return (src);
-	else if (!src || !*src)
-		return (dst);
-	count = ft_strlen(src) + ft_strlen(dst);
-	ans = (char *)malloc(sizeof(char) * (count + 1));
-	if (!ans)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (src[j])
-		ans[i++] = src[j++];
-	j = 0;
-	while (dst[j])
-		ans[i++] = dst[j++];
-	ans[i] = '\0';
-	return (free(src), free(dst), ans);
 }

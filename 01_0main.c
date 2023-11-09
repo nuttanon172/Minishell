@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   01_0main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntairatt <ntairatt@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 18:13:30 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 15:33:58 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/09 15:09:00 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	start_shell(char **temp_env)
 				temp_table = arg_table->next;
 			else if (!ft_strcmp(temp_table->cmd, "cd") && !temp_table->next)
 				chang_directory(temp_table->argv[1], temp_env);
-			if (check_char_sptable(temp_table))
+			else if (check_char_sptable(temp_table))
 				g_pi = pipex(&temp_table, &temp_env);
 			free_all_table(arg_table);
 		}

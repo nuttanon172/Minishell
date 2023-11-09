@@ -6,7 +6,7 @@
 /*   By: ntairatt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 17:24:59 by ntairatt          #+#    #+#             */
-/*   Updated: 2023/11/06 10:51:46 by ntairatt         ###   ########.fr       */
+/*   Updated: 2023/11/09 13:26:05 by ntairatt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,18 @@
 int	ft_atoi(char *nbr)
 {
 	int		ans;
+	int		sign;
 	char	*temp;
 
 	temp = nbr;
 	ans = 0;
+	sign = 1;
+	if (*temp == '-' || *temp == '+')
+	{
+		if (*temp == '-')
+			sign = -1;
+		temp++;
+	}
 	while (*temp && (*temp < '0' || *temp > '9'))
 		temp++;
 	while (*temp && *temp >= '0' && *temp <= '9')
@@ -26,7 +34,7 @@ int	ft_atoi(char *nbr)
 		ans = (10 * (ans) + (*temp - '0'));
 		temp++;
 	}
-	return (ans);
+	return (ans * sign);
 }
 
 void	free_chardstar(char **path)
